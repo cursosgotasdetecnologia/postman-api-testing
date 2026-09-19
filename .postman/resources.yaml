@@ -5,3 +5,5 @@ cloudResources:
     ../postman/collections/Projeto QA Automation - Etapa 2: 15307284-5db2e029-c214-4e16-a26d-b460ac3937b8
   environments:
     ../postman/environments/Projeto QA Automation — Etapa 2.environment.yaml: 15307284-6524991f-3138-4d95-b235-a454e0a47c94
+  globals:
+    ../postman/globals/workspace.globals.yaml: f53c8f27-bc39-42db-862a-2ef201c7d119
