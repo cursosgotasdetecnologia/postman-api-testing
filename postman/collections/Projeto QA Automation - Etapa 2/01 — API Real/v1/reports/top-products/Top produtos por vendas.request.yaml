@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/reports/top-products"
+method: GET
+headers:
+  Accept: application/json
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Top produtos por vendas.resources/examples
+order: 1000

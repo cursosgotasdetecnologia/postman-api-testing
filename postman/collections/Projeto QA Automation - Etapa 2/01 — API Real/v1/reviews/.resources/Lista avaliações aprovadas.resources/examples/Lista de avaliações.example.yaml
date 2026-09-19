@@ -1,0 +1,37 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/reviews?product_id=1"
+  method: GET
+  headers:
+    Accept: application/json
+  queryParams:
+    product_id: "1"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": [
+          {
+            "id": 1,
+            "product_id": 1,
+            "user_id": "9a98ee38-14dd-418f-b5ef-414c38abea03",
+            "rating": 5,
+            "title": "Excelente mouse!",
+            "comment": "Chegou antes do prazo.",
+            "helpful_count": 14,
+            "created_at": "2024-09-02T09:30:00.000Z",
+            "products": {
+              "name": "Mouse Gamer RGB Pro"
+            }
+          }
+        ],
+        "mensagens": [
+          "Avaliações carregadas com sucesso."
+        ]
+      }
+order: 1000

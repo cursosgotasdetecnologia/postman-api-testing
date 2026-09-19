@@ -1,0 +1,41 @@
+$kind: http-request
+url: https://920e4531-a523-44ff-a667-57d13f04a5bb.mock.pstmn.io/api/v1/categories/-1
+method: GET
+headers:
+  - key: x-mock-response-code
+    value: "400"
+    disabled: true
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      const jsonData = pm.response.json();
+
+      pm.test("Deve retornar status 400 para ID inválido", function () {
+          pm.response.to.have.status(400);
+      });
+
+      pm.test("Deve retornar Content-Type application/json", function () {
+          pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+      });
+
+      pm.test("Deve retornar corpo como JSON válido", function () {
+          pm.expect(jsonData).to.be.an("object");
+      });
+
+      pm.test("Deve retornar data como null", function () {
+          pm.expect(jsonData.data).to.be.null;
+      });
+
+      pm.test("Deve retornar mensagens como array", function () {
+          pm.expect(jsonData.mensagens).to.be.an("array");
+      });
+
+      pm.test("Deve conter a mensagem de negócio esperada", function () {
+          pm.expect(jsonData.mensagens).to.include("ID da categoria inválido. Deve ser um número positivo.");
+      });
+    language: text/javascript
+settings: {}
+examples: ./.resources/MockServerCategorias ID invalido.resources/examples
+order: 1000

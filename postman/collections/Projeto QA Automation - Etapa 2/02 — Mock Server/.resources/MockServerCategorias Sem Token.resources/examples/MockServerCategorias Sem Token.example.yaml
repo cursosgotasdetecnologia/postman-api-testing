@@ -1,0 +1,37 @@
+$kind: http-example
+request:
+  url: https://920e4531-a523-44ff-a667-57d13f04a5bb.mock.pstmn.io/api/v1/categories/2
+  method: GET
+  headers:
+    x-mock-response-code: "401"
+response:
+  statusCode: 401
+  statusText: Unauthorized
+  headers:
+    :status: "401"
+    date: Sun, 13 Sep 2026 01:49:32 GMT
+    content-type: application/json; charset=utf-8
+    content-length: "103"
+    x-srv-trace: v=1;t=fbb1a63125d0893e
+    x-srv-span: v=1;s=a0eedd76f07e3f73
+    access-control-allow-origin: "*"
+    x-ratelimit-limit: "120"
+    x-ratelimit-remaining: "119"
+    x-ratelimit-reset: "1789264231"
+    etag: W/"67-7D7J/v5vuqsuQXKK+qn+WYM1ng8"
+    vary: Accept-Encoding
+    set-cookie: __cf_bm=hHgbrUTgTolC0G9fwJLMNWXGuT0gB4ppaCmag_dwt7I-1789264171.1432374-1.0.1.1-ORWEZNeYXV8CQwXaZtAegsook.zb5b9dUiYG9DPCxsmL3oExQGYok7MFyIXkAsYVzKQevq8PN8XyxST2N7e0ayvDHGkId_1BvQXIufOHK9nktK5Q5wa07pDhEKlMCIYK; HttpOnly; SameSite=None; Secure; Path=/; Domain=pstmn.io; Expires=Sun, 13 Sep 2026 02:19:32 GMT
+    cf-cache-status: DYNAMIC
+    server: cloudflare
+    cf-ray: a3a37eed9b921b17-GRU
+  body:
+    type: text
+    content: |-
+      {
+          "data": null,
+          "expires_at": null,
+          "mensagens": [
+              "Exemplo de erro retornado pela API"
+          ]
+      }
+order: 1000

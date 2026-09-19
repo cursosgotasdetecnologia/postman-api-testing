@@ -1,0 +1,18 @@
+$kind: http-request
+name: Lista produtos de uma categoria
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories/:id"
+method: GET
+headers:
+  - key: Accept
+    value: application/json
+  - key: Authorization
+    value: Bearer <token>
+    description: "Added as a part of security scheme: bearer"
+pathVariables:
+  id: "1234"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+order: 7000

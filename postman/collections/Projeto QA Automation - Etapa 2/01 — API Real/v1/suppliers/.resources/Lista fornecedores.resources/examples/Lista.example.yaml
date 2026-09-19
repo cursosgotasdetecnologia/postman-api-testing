@@ -1,0 +1,35 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers"
+  method: GET
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": [
+          {
+            "id": 1,
+            "company_name": "Tech Solutions Ltda",
+            "contact_name": "João Silva",
+            "email": "joao@techsolutions.com",
+            "phone": "(11) 98765-4321",
+            "cnpj": "12345678901234",
+            "uf": "SP"
+          }
+        ],
+        "mensagens": [
+          "Fornecedores carregados com sucesso."
+        ]
+      }
+order: 1000

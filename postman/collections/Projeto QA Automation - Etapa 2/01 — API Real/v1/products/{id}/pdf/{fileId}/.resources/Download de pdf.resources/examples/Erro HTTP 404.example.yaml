@@ -1,0 +1,24 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id/pdf/:fileId"
+  method: GET
+  headers:
+    Accept: application/json
+  pathVariables:
+    id: "1"
+    fileId: arquivo-exemplo
+response:
+  statusCode: 404
+  statusText: Not Found
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": null,
+        "mensagens": [
+          "PDF não encontrado para este ID."
+        ]
+      }
+order: 2000

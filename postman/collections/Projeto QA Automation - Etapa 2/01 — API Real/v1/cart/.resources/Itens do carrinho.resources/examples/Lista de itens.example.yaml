@@ -1,0 +1,36 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/cart"
+  method: GET
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": [
+          {
+            "id": 501,
+            "product_id": 1,
+            "quantity": 2,
+            "products": {
+              "id": 1,
+              "name": "Mouse Gamer RGB Pro",
+              "price": 299.9
+            }
+          }
+        ],
+        "mensagens": [
+          "Carrinho carregado com sucesso."
+        ]
+      }
+order: 1000

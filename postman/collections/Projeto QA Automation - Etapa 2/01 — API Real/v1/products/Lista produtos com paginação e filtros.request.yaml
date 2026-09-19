@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products?page=1&limit=8&search=Gamer&category_id=1&supplier_id=2&sortBy=price&order=asc&is_active=true"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  page: "1"
+  limit: "8"
+  search: Gamer
+  category_id: "1"
+  supplier_id: "2"
+  sortBy: price
+  order: asc
+  is_active: "true"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Lista produtos com paginação e filtros.resources/examples
+order: 6000

@@ -1,0 +1,43 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id/pdf"
+  method: POST
+  headers:
+    - key: Content-Type
+      value: multipart/form-data
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  pathVariables:
+    id: "1"
+  body:
+    type: formdata
+    content:
+      - type: file
+        key: file
+        src: []
+        description: Arquivo PDF (máximo 2MB)
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": {
+          "id": "pdf-uuid-5678",
+          "filename": "pdf-uuid-5678_manual_especificacoes.pdf",
+          "size": 768000,
+          "mimetype": "application/pdf",
+          "productId": 1,
+          "url": "/api/v1/products/1/pdf/pdf-uuid-5678"
+        },
+        "mensagens": [
+          "Upload do PDF realizado com sucesso!"
+        ]
+      }
+order: 1000

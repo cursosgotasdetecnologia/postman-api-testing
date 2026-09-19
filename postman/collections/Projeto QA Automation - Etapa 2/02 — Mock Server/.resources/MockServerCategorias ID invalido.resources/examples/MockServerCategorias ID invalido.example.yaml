@@ -1,0 +1,38 @@
+$kind: http-example
+request:
+  url: https://920e4531-a523-44ff-a667-57d13f04a5bb.mock.pstmn.io/api/v1/categories/-1
+  method: GET
+  headers:
+    - key: x-mock-response-code
+      value: "400"
+      disabled: true
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    :status: "400"
+    date: Sun, 13 Sep 2026 01:38:12 GMT
+    content-type: application/json; charset=utf-8
+    content-length: "103"
+    x-srv-trace: v=1;t=bddc703349fd72ab
+    x-srv-span: v=1;s=7f08c941c1f14160
+    access-control-allow-origin: "*"
+    x-ratelimit-limit: "120"
+    x-ratelimit-remaining: "119"
+    x-ratelimit-reset: "1789263552"
+    etag: W/"67-dRJYChS2vsfO1qkXCZMnMPkUo8E"
+    vary: Accept-Encoding
+    set-cookie: __cf_bm=6NjXTGZul8YYUsXM8F2GHqZcskxaVvpVTn7rbGbVfQ8-1789263491.7674384-1.0.1.1-cLUz3eKmfOi9r3LPpQCU9_vGuK9iumaCgdvciVa3dosQ18nChfUJvtYvGI3O_QV_SQ8s6pq21VnJtlD.lLnY0isQbG3DzD355BGwwnfVjbLV.i6brcz.vOBSCWtwpG7t; HttpOnly; SameSite=None; Secure; Path=/; Domain=pstmn.io; Expires=Sun, 13 Sep 2026 02:08:12 GMT
+    cf-cache-status: DYNAMIC
+    server: cloudflare
+    cf-ray: a3a36e578c2111fe-GRU
+  body:
+    type: text
+    content: |-
+      {
+          "data": null,
+          "mensagens": [
+              "ID da categoria inválido. Deve ser um número positivo."
+          ]
+      }
+order: 1000

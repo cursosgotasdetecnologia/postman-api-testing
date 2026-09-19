@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/register"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "aluno@example.com",
+      "password": "Exemplo@123",
+      "full_name": "Aluno Exemplo"
+    }
+settings: {}
+examples: ./.resources/Cadastro em memória.resources/examples
+order: 1000

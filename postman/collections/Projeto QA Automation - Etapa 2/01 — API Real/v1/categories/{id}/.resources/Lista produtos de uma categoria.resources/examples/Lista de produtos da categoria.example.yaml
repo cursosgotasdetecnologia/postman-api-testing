@@ -1,0 +1,44 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories/1"
+  method: GET
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": [
+          {
+            "id": 1,
+            "name": "Mouse Gamer RGB Pro Wireless",
+            "price": 299.9,
+            "stock_quantity": 50,
+            "sku": "MGP-2024W",
+            "category_id": 1,
+            "supplier_id": 1,
+            "slug": "mouse-gamer-rgb-pro-wireless",
+            "is_active": true,
+            "created_at": "2026-09-07T00:00:00.000Z",
+            "categories": {
+              "name": "string"
+            },
+            "suppliers": {
+              "company_name": "string"
+            }
+          }
+        ],
+        "mensagens": [
+          "Lista de produtos da categoria"
+        ]
+      }
+order: 1000

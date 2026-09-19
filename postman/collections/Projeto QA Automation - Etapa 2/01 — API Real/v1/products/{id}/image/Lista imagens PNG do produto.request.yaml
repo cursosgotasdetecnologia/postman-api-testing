@@ -1,0 +1,15 @@
+$kind: http-request
+description: Retorna a lista de imagens associadas ao produto com seus IDs para download individual.
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id/image"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  id: "1"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Lista imagens PNG do produto.resources/examples
+order: 2000

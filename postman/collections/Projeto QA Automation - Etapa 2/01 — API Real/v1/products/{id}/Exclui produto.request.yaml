@@ -1,0 +1,15 @@
+$kind: http-request
+description: Remove um produto do catálogo. Produtos vinculados a pedidos ou carrinho não podem ser excluídos.
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id"
+method: DELETE
+headers:
+  Accept: application/json
+pathVariables:
+  id: "1214"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Exclui produto.resources/examples
+order: 7000

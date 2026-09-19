@@ -1,0 +1,23 @@
+$kind: http-request
+description: Atualiza apenas os campos informados. Pelo menos um campo é obrigatório.
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id"
+method: PATCH
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  id: "1"
+body:
+  type: json
+  content: |-
+    {
+      "price": 259.9,
+      "stock_quantity": 180
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Atualiza parcialmente um produto (PATCH).resources/examples
+order: 6000

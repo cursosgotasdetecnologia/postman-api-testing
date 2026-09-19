@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/reviews?product_id=1"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  product_id: "1"
+settings: {}
+examples: ./.resources/Lista avaliações aprovadas.resources/examples
+order: 2000

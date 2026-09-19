@@ -1,0 +1,23 @@
+$kind: http-request
+description: Faz upload de um PDF (manual, especificações, garantia) para o produto. Valida formato e tamanho (máx. 2MB).
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id/pdf"
+method: POST
+headers:
+  Content-Type: multipart/form-data
+  Accept: application/json
+pathVariables:
+  id: "1"
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: ""
+      description: Arquivo PDF (máximo 2MB)
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Upload de arquivo PDF.resources/examples
+order: 3000

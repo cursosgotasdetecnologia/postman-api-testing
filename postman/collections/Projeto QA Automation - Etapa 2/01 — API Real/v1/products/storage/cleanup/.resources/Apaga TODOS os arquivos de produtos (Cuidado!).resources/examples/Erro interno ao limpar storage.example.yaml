@@ -1,0 +1,26 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/storage/cleanup"
+  method: DELETE
+  headers:
+    - key: x-admin-key
+      value: senha-secreta-do-everton
+      description: Chave secreta para autorizar a limpeza
+    - key: Accept
+      value: application/json
+response:
+  statusCode: 500
+  statusText: Internal Server Error
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": null,
+        "mensagens": [
+          "Erro ao limpar o bucket no Supabase.",
+          "DICA: O seu usuário do Supabase precisa ter permissão de DELETE no bucket (Policies)."
+        ]
+      }
+order: 3000

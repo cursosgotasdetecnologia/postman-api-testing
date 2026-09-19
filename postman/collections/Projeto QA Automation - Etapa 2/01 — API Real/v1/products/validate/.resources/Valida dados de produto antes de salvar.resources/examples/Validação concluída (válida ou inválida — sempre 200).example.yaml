@@ -1,0 +1,49 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/validate"
+  method: POST
+  headers:
+    - key: Content-Type
+      value: application/json
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  body:
+    type: json
+    content: |-
+      {
+        "name": "Mouse Gamer RGB",
+        "price": 299.9,
+        "stock_quantity": 50,
+        "sku": "MGP-2024",
+        "category_id": 1,
+        "supplier_id": 1
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "SKU em formato não padrão",
+            "Nome deve começar com letra maiúscula"
+          ],
+          "suggestions": [
+            "Considere adicionar descrição detalhada",
+            "Adicione informações de compatibilidade"
+          ]
+        },
+        "mensagens": [
+          "Produto válido para cadastro"
+        ]
+      }
+order: 1000

@@ -1,0 +1,15 @@
+name: Projeto QA Automation — Etapa 2
+values:
+  - key: projetoQAAutomationBaseUrl
+    value: 'https://northwind-test-platform.vercel.app'
+  - key: projetoQAAutomationEmail
+    value: ''
+  - key: projetoQAAutomationPassword
+    value: ''
+  - key: projetoQAAutomationAccessToken
+    value: ''
+  - key: projetoQAAutomationMockUrl
+    value: ''
+  - key: token
+    value: ''
+color: 0

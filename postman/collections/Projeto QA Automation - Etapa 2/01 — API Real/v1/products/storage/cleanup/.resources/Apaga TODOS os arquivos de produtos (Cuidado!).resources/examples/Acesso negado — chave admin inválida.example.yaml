@@ -1,0 +1,25 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/storage/cleanup"
+  method: DELETE
+  headers:
+    - key: x-admin-key
+      value: senha-secreta-do-everton
+      description: Chave secreta para autorizar a limpeza
+    - key: Accept
+      value: application/json
+response:
+  statusCode: 403
+  statusText: Forbidden
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": null,
+        "mensagens": [
+          "Acesso negado. Você não tem permissão para limpar o storage. Passe a chave correta no header \"x-admin-key\"."
+        ]
+      }
+order: 2000

@@ -1,0 +1,54 @@
+$kind: http-request
+url: https://920e4531-a523-44ff-a667-57d13f04a5bb.mock.pstmn.io/api/v1/categories/1
+method: GET
+headers:
+  x-mock-response-code: "200"
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      const jsonData = pm.response.json();
+
+      pm.test("Deve retornar status 200 para ID válido", function () {
+          pm.response.to.have.status(200);
+      });
+
+      pm.test("Deve retornar Content-Type application/json", function () {
+          pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+      });
+
+      pm.test("Deve retornar corpo como JSON válido", function () {
+          pm.expect(jsonData).to.be.an("object");
+      });
+
+      pm.test("Deve retornar data como array", function () {
+          pm.expect(jsonData.data).to.be.an("array");
+      });
+
+      pm.test("Deve retornar ao menos um produto na lista", function () {
+          pm.expect(jsonData.data.length).to.be.above(0);
+      });
+
+      pm.test("Deve conter os campos essenciais no primeiro produto", function () {
+          const produto = jsonData.data[0];
+          pm.expect(produto.id).to.be.a("number");
+          pm.expect(produto.name).to.be.a("string");
+          pm.expect(produto.price).to.be.a("number");
+          pm.expect(produto.stock_quantity).to.be.a("number");
+          pm.expect(produto.sku).to.be.a("string");
+          pm.expect(produto.category_id).to.be.a("number");
+          pm.expect(produto.is_active).to.be.a("boolean");
+      });
+
+      pm.test("Deve retornar mensagens como array", function () {
+          pm.expect(jsonData.mensagens).to.be.an("array");
+      });
+
+      pm.test("Deve conter a mensagem de negócio esperada", function () {
+          pm.expect(jsonData.mensagens).to.include("Lista de produtos da categoria");
+      });
+    language: text/javascript
+settings: {}
+examples: ./.resources/MockServerCategorias ID Valido.resources/examples
+order: 3000

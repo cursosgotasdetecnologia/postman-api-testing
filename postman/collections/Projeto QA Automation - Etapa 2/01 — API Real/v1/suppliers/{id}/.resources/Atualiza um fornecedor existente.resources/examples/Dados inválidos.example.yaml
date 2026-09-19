@@ -1,0 +1,42 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers/:id"
+  method: PUT
+  headers:
+    - key: Content-Type
+      value: application/json
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  pathVariables:
+    - key: id
+      value: "5121"
+      description: ID do fornecedor
+  body:
+    type: json
+    content: |-
+      {
+        "company_name": "Tech Solutions Ltda",
+        "contact_name": "João Silva",
+        "email": "joao@techsolutions.com",
+        "phone": "(11) 98765-4321",
+        "cnpj": "12345678901234",
+        "uf": "SP"
+      }
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": null,
+        "mensagens": [
+          "UF inválida. Informe a sigla de 2 letras do estado (ex: SP, RJ, MG)."
+        ]
+      }
+order: 2000

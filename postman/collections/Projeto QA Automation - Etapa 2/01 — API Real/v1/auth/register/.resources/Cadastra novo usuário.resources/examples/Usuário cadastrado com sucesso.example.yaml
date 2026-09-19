@@ -1,0 +1,40 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/auth/register"
+  method: POST
+  headers:
+    Content-Type: application/json
+    Accept: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "full_name": "Maria Silva Santos",
+        "email": "maria.silva@exemplo.com.br",
+        "password": "SenhaForte@2024",
+        "confirmPassword": "SenhaForte@2024"
+      }
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": {
+          "token": "",
+          "user": {
+            "id": "a2ba45af-e254-424b-9bf7-38bf7b8ccda4",
+            "full_name": "Maria Silva Santos",
+            "email": "maria.silva@exemplo.com.br",
+            "role": "customer",
+            "is_active": true
+          }
+        },
+        "mensagens": [
+          "Login realizado com sucesso!"
+        ]
+      }
+order: 1000

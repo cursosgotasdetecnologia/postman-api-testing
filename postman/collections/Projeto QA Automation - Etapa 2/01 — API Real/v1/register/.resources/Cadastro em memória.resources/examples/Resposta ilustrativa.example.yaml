@@ -1,0 +1,39 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/register"
+  method: POST
+  headers:
+    Content-Type: application/json
+    Accept: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "email": "aluno@example.com",
+        "password": "Exemplo@123",
+        "full_name": "Aluno Exemplo"
+      }
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "user": {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "email": "aluno@example.com",
+            "full_name": "Aluno Exemplo",
+            "role": "user"
+          },
+          "token": "jwt.exemplo.token"
+        },
+        "mensagens": [
+          "User created successfully"
+        ]
+      }
+order: 1000

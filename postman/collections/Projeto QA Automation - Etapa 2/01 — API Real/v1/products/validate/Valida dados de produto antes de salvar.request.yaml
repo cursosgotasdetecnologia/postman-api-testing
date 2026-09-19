@@ -1,0 +1,25 @@
+$kind: http-request
+description: Executa validações completas (campos obrigatórios, regras de negócio, duplicidades) e retorna erros, warnings e sugestões.
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/validate"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Mouse Gamer RGB",
+      "price": 299.9,
+      "stock_quantity": 50,
+      "sku": "MGP-2024",
+      "category_id": 1,
+      "supplier_id": 1
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Valida dados de produto antes de salvar.resources/examples
+order: 1000

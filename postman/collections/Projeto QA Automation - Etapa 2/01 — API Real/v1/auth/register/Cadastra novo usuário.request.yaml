@@ -1,0 +1,19 @@
+$kind: http-request
+description: Cria uma conta (role customer padrão)
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/auth/register"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "full_name": "Maria Silva Santos",
+      "email": "maria.silva@exemplo.com.br",
+      "password": "SenhaForte@2024",
+      "confirmPassword": "SenhaForte@2024"
+    }
+settings: {}
+examples: ./.resources/Cadastra novo usuário.resources/examples
+order: 1000

@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories?page=1&limit=10"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  - key: page
+    value: "1"
+    description: Número da página
+  - key: limit
+    value: "10"
+    description: Quantidade de itens por página
+settings: {}
+examples: ./.resources/Lista categorias com paginação Copy.resources/examples
+order: 4000

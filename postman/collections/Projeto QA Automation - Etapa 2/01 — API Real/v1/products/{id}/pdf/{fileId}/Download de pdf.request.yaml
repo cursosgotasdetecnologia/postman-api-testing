@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id/pdf/:fileId"
+method: GET
+headers:
+  Accept: application/pdf
+pathVariables:
+  id: "1"
+  fileId: arquivo-exemplo
+settings: {}
+examples: ./.resources/Download de pdf.resources/examples
+order: 1000

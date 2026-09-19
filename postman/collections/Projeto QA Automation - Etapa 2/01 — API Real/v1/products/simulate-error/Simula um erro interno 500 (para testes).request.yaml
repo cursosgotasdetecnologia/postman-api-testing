@@ -1,0 +1,13 @@
+$kind: http-request
+description: Usado para validar tratamento de erro no cliente. Sempre retorna 500 se autenticado.
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/simulate-error"
+method: GET
+headers:
+  Accept: application/json
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Simula um erro interno 500 (para testes).resources/examples
+order: 1000

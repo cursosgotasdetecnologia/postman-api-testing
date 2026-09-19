@@ -1,0 +1,41 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/orders/:id/payments"
+  method: GET
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  pathVariables:
+    id: "1"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": [
+          {
+            "id": 1,
+            "order_id": 1,
+            "payment_method": "pix",
+            "payment_status": "pending",
+            "amount": 199.9,
+            "transaction_id": null,
+            "payment_date": null,
+            "card_last_digits": null,
+            "installments": 1,
+            "notes": null,
+            "created_at": "2026-09-07T00:00:00.000Z"
+          }
+        ],
+        "mensagens": [
+          "Operação realizada com sucesso."
+        ]
+      }
+order: 1000

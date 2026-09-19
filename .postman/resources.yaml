@@ -1,0 +1,7 @@
+workspace:
+  id: 1c33b5d3-192b-4557-ad5b-b938b44625ff
+cloudResources:
+  collections:
+    ../postman/collections/Projeto QA Automation - Etapa 2: 15307284-5db2e029-c214-4e16-a26d-b460ac3937b8
+  environments:
+    ../postman/environments/Projeto QA Automation — Etapa 2.environment.yaml: 15307284-6524991f-3138-4d95-b235-a454e0a47c94

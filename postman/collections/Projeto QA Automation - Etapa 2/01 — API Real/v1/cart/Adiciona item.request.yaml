@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/cart"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "product_id": 1,
+      "quantity": 2
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Adiciona item.resources/examples
+order: 3000

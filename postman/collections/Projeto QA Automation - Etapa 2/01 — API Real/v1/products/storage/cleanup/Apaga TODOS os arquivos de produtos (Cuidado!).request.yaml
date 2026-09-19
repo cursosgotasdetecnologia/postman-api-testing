@@ -1,0 +1,13 @@
+$kind: http-request
+description: Rota administrativa. Remove todos os arquivos (imagens e PDFs) do storage de produtos. Requer header x-admin-key.
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/storage/cleanup"
+method: DELETE
+headers:
+  - key: x-admin-key
+    value: senha-secreta-do-everton
+    description: Chave secreta para autorizar a limpeza
+  - key: Accept
+    value: application/json
+settings: {}
+examples: ./.resources/Apaga TODOS os arquivos de produtos (Cuidado!).resources/examples
+order: 1000

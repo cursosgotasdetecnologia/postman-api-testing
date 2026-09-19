@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers/:id/unlink"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  id: "1"
+body:
+  type: json
+  content: |-
+    {
+      "product_ids": [
+        1
+      ]
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Desvincula produtos do fornecedor.resources/examples
+order: 1000

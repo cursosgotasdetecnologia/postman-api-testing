@@ -1,0 +1,27 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/storage/cleanup"
+  method: DELETE
+  headers:
+    - key: x-admin-key
+      value: senha-secreta-do-everton
+      description: Chave secreta para autorizar a limpeza
+    - key: Accept
+      value: application/json
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": {
+          "origin": "supabase"
+        },
+        "mensagens": [
+          "FAXINA CONCLUÍDA: Todos os arquivos do bucket \"products\" na nuvem foram apagados!"
+        ]
+      }
+order: 1000

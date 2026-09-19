@@ -1,0 +1,47 @@
+$kind: http-example
+request:
+  url: https://920e4531-a523-44ff-a667-57d13f04a5bb.mock.pstmn.io/api/v1/categories/
+  method: POST
+  headers:
+    x-mock-response-code: "400"
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    :status: "400"
+    date: Sun, 13 Sep 2026 01:49:56 GMT
+    content-type: application/json; charset=utf-8
+    content-length: "88"
+    x-srv-trace: v=1;t=e732c73f63ba3049
+    x-srv-span: v=1;s=ff9558d07ee9ea50
+    access-control-allow-origin: "*"
+    x-ratelimit-limit: "120"
+    x-ratelimit-remaining: "116"
+    x-ratelimit-reset: "1789264231"
+    access-control-allow-credentials: "true"
+    access-control-allow-headers: Content-Type, Authorization, X-Requested-With, Accept, Origin
+    access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS, PATCH
+    access-control-max-age: "86400"
+    cache-control: no-store, no-cache, must-revalidate, proxy-revalidate
+    expires: "0"
+    pragma: no-cache
+    server: cloudflare
+    strict-transport-security: max-age=63072000; includeSubDomains; preload
+    vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+    x-matched-path: /api/v1/categories
+    x-vercel-cache: MISS
+    x-vercel-id: gru1::gru1::tnngg-1789241791293-043878680f27
+    etag: W/"58-2mK63ES8gQuNLiPJU+6rwRPbnBY"
+    set-cookie: __cf_bm=JsuNh_R.hnJ11D_OcUDjsx10H3q4viT_7WZxkGXEwVk-1789264195.2827332-1.0.1.1-.WnzR6.9oBzHuVOjxGlGUsWLEvS8HGp0pIRzSYsyp4w12U6Bwur8.FeF92b5VW_wo6edlQcF_g8ZS6gO8WB.aaNomaAwfep9shgMX4kPQve8HsyREdIPZFp7ECglxJhx; HttpOnly; SameSite=None; Secure; Path=/; Domain=pstmn.io; Expires=Sun, 13 Sep 2026 02:19:56 GMT
+    cf-cache-status: DYNAMIC
+    cf-ray: a3a37f848ab31b17-GRU
+  body:
+    type: text
+    content: |-
+      {
+          "data": null,
+          "mensagens": [
+              "Categoria com dados duplicados."
+          ]
+      }
+order: 1000

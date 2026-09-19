@@ -1,0 +1,28 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers/:id"
+method: PUT
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  - key: id
+    value: "5121"
+    description: ID do fornecedor
+body:
+  type: json
+  content: |-
+    {
+      "company_name": "Tech Solutions Ltda",
+      "contact_name": "João Silva",
+      "email": "joao@techsolutions.com",
+      "phone": "(11) 98765-4321",
+      "cnpj": "12345678901234",
+      "uf": "SP"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Atualiza um fornecedor existente.resources/examples
+order: 4000

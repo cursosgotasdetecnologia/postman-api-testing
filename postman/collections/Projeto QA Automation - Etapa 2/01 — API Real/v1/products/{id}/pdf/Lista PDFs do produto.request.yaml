@@ -1,0 +1,15 @@
+$kind: http-request
+description: Retorna a lista de arquivos PDF (manuais, especificações) associados ao produto.
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id/pdf"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  id: "1"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Lista PDFs do produto.resources/examples
+order: 2000

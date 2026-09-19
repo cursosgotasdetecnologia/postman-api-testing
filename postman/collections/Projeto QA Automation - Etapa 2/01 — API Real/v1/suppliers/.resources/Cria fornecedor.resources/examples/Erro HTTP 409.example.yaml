@@ -1,0 +1,38 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers"
+  method: POST
+  headers:
+    - key: Content-Type
+      value: application/json
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  body:
+    type: json
+    content: |-
+      {
+        "company_name": "Tech Solutions Ltda",
+        "contact_name": "João Silva",
+        "email": "joao@techsolutions.com",
+        "phone": "(11) 98765-4321",
+        "cnpj": "12345678901234",
+        "uf": "SP"
+      }
+response:
+  statusCode: 409
+  statusText: Conflict
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": null,
+        "mensagens": [
+          "Já existe um fornecedor com este CNPJ."
+        ]
+      }
+order: 4000

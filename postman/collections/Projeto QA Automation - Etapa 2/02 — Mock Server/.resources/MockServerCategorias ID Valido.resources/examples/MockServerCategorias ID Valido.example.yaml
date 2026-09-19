@@ -1,0 +1,55 @@
+$kind: http-example
+request:
+  url: https://920e4531-a523-44ff-a667-57d13f04a5bb.mock.pstmn.io/api/v1/categories/1
+  method: GET
+  headers:
+    x-mock-response-code: "200"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    :status: "200"
+    date: Sun, 13 Sep 2026 01:49:39 GMT
+    content-type: application/json; charset=utf-8
+    x-srv-trace: v=1;t=1711e0d478411234
+    x-srv-span: v=1;s=c280c69750cd2195
+    access-control-allow-origin: "*"
+    x-ratelimit-limit: "120"
+    x-ratelimit-remaining: "118"
+    x-ratelimit-reset: "1789264231"
+    etag: W/"200-yR2tVqCwxMgv59nLePuc9v8wXZ4"
+    vary: Accept-Encoding
+    set-cookie: __cf_bm=in5MUhO_YdusgLCbCNLBFsaszITCrCzBTnGIuYk2KuI-1789264178.580564-1.0.1.1-jwW0VR3Ff6LtQ5SLQDjrXKlHqz4G2uW28NjFAxnQAmiofhUQ6ez_6eT5V3oyqF19ia2jUW9zUVHqbcGQL3ve_v3dTS3Y.7L7zezNrL_Xk8XMwd15snWUowMobBdzFcc3; HttpOnly; SameSite=None; Secure; Path=/; Domain=pstmn.io; Expires=Sun, 13 Sep 2026 02:19:39 GMT
+    cf-cache-status: DYNAMIC
+    content-encoding: gzip
+    server: cloudflare
+    cf-ray: a3a37f1c1ea11b17-GRU
+  body:
+    type: text
+    content: |-
+      {
+          "data": [
+              {
+                  "id": 1,
+                  "name": "Mouse Gamer RGB Pro Wireless",
+                  "price": 299.9,
+                  "stock_quantity": 50,
+                  "sku": "MGP-2024W",
+                  "category_id": 1,
+                  "supplier_id": 1,
+                  "slug": "mouse-gamer-rgb-pro-wireless",
+                  "is_active": true,
+                  "created_at": "2026-09-07T00:00:00.000Z",
+                  "categories": {
+                      "name": "string"
+                  },
+                  "suppliers": {
+                      "company_name": "string"
+                  }
+              }
+          ],
+          "mensagens": [
+              "Lista de produtos da categoria"
+          ]
+      }
+order: 1000

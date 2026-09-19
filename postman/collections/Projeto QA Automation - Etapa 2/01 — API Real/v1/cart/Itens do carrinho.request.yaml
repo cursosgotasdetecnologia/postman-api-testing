@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/cart"
+method: GET
+headers:
+  Accept: application/json
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Itens do carrinho.resources/examples
+order: 2000

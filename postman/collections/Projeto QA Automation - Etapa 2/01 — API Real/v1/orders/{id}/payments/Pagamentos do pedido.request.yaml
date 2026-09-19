@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/orders/:id/payments"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  id: "1"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Pagamentos do pedido.resources/examples
+order: 1000

@@ -1,0 +1,15 @@
+$kind: http-request
+description: Busca um produto pelo ID com categoria e fornecedor.
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  id: "1"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Detalhes do produto.resources/examples
+order: 4000

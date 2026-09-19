@@ -1,0 +1,27 @@
+$kind: http-request
+description: Atualiza todos os campos de um produto existente.
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id"
+method: PUT
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  id: "1"
+body:
+  type: json
+  content: |-
+    {
+      "name": "Teclado Mecânico Wireless",
+      "price": 549.99,
+      "stock_quantity": 37,
+      "sku": "TCMW-2024B",
+      "category_id": 1,
+      "supplier_id": 1
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Atualiza produto (PUT completo).resources/examples
+order: 5000

@@ -1,0 +1,23 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/reviews?product_id=1"
+  method: GET
+  headers:
+    Accept: application/json
+  queryParams:
+    product_id: "1"
+response:
+  statusCode: 401
+  statusText: Unauthorized
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": null,
+        "mensagens": [
+          "Exemplo de erro retornado pela API"
+        ]
+      }
+order: 2000

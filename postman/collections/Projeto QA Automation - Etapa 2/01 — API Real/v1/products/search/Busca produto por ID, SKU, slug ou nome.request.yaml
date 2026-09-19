@@ -1,0 +1,22 @@
+$kind: http-request
+description: Busca direta por um dos parâmetros. Pelo menos um é obrigatório. Se vários forem enviados, a prioridade é id, sku, slug e name. O nome deve ser completo e exato, incluindo maiúsculas e minúsculas; espaços nas extremidades são removidos.
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/search?id=1&sku=MGP-2024W&slug=mouse-gamer-rgb-pro-wireless&name=Mouse Gamer RGB Pro Wireless"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  - key: id
+    value: "1"
+    description: ID do produto
+  - key: sku
+    value: MGP-2024W
+    description: SKU exato do produto
+  - key: slug
+    value: mouse-gamer-rgb-pro-wireless
+    description: Slug exato do produto
+  - key: name
+    value: Mouse Gamer RGB Pro Wireless
+    description: Nome completo e exato do produto
+settings: {}
+examples: ./.resources/Busca produto por ID, SKU, slug ou nome.resources/examples
+order: 1000

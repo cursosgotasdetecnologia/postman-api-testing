@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/orders"
+method: GET
+headers:
+  Accept: application/json
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Lista pedidos do usuário.resources/examples
+order: 2000

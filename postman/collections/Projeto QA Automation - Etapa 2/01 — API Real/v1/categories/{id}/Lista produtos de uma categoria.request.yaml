@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories/:id"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  id: "1"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Lista produtos de uma categoria.resources/examples
+order: 2000

@@ -1,0 +1,56 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id/reviews"
+  method: GET
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  pathVariables:
+    id: "1"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": [
+          {
+            "id": 1,
+            "product_id": 1,
+            "user_id": "9a98ee38-14dd-418f-b5ef-414c38abea03",
+            "rating": 5,
+            "title": "Excelente mouse!",
+            "comment": "Produto de altíssima qualidade, chegou antes do prazo.",
+            "is_verified_purchase": true,
+            "helpful_count": 14,
+            "created_at": "2024-09-02T09:30:00.000Z"
+          },
+          {
+            "id": 2,
+            "product_id": 1,
+            "user_id": "b7fc1a2d-88a4-4e11-9c10-123456789abc",
+            "rating": 4,
+            "title": "Muito bom",
+            "comment": "Custo benefício ótimo, só achei o clique um pouco alto.",
+            "is_verified_purchase": true,
+            "helpful_count": 5,
+            "created_at": "2024-09-10T14:20:00.000Z"
+          }
+        ],
+        "product": {
+          "id": 1,
+          "name": "Mouse Gamer RGB Pro Wireless"
+        },
+        "averageRating": 4.5,
+        "totalReviews": 2,
+        "mensagens": [
+          "2 avaliação(ões) encontrada(s)."
+        ]
+      }
+order: 1000

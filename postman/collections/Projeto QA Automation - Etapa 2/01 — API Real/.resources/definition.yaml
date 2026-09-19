@@ -1,0 +1,138 @@
+$kind: collection
+scripts:
+  - type: http:beforeRequest
+    code: "const baseUrl = pm.environment.get(\"projetoQAAutomationBaseUrl\");\r
+
+      const email = pm.environment.get(\"projetoQAAutomationEmail\");\r
+
+      const password = pm.environment.get(\"projetoQAAutomationPassword\");\r
+
+      \r
+
+      if (!baseUrl || !email || !password) {\r
+
+      \    throw new Error(\r
+
+      \        \"Base URL, e-mail ou senha não foram configurados no Environment.\"\r
+
+      \    );\r
+
+      }\r
+
+      \r
+
+      console.log(\"Iniciando autenticação automática da API real...\");\r
+
+      \r
+
+      pm.sendRequest({\r
+
+      \    url: `${baseUrl}/api/v1/auth/login`,\r
+
+      \    method: \"POST\",\r
+
+      \    header: {\r
+
+      \        \"Content-Type\": \"application/json\"\r
+
+      \    },\r
+
+      \    body: {\r
+
+      \        mode: \"raw\",\r
+
+      \        raw: JSON.stringify({\r
+
+      \            email: email,\r
+
+      \            password: password\r
+
+      \        })\r
+
+      \    }\r
+
+      }, function (erro, resposta) {\r
+
+      \    if (erro) {\r
+
+      \        console.error(\"Erro de comunicação durante o login:\", erro);\r
+
+      \        throw new Error(\"Não foi possível acessar o endpoint de autenticação.\");\r
+
+      \    }\r
+
+      \r
+
+      \    if (resposta.code < 200 || resposta.code >= 300) {\r
+
+      \        console.error(\r
+
+      \            `Falha na autenticação. Status recebido: ${resposta.code}`\r
+
+      \        );\r
+
+      \        console.error(\"Resposta recebida:\", resposta.text());\r
+
+      \        throw new Error(\"A API não autorizou a geração do access token.\");\r
+
+      \    }\r
+
+      \r
+
+      \    let corpo;\r
+
+      \r
+
+      \    try {\r
+
+      \        corpo = resposta.json();\r
+
+      \    } catch (erroJson) {\r
+
+      \        console.error(\"A resposta do login não contém um JSON válido.\");\r
+
+      \        throw erroJson;\r
+
+      \    }\r
+
+      \r
+
+      \    const accessToken = corpo?.data?.token;\r
+
+      \r
+
+      \    if (!accessToken) {\r
+
+      \        console.error(\"Corpo recebido:\", corpo);\r
+
+      \        throw new Error(\r
+
+      \            \"O campo data.token não foi encontrado na resposta do login.\"\r
+
+      \        );\r
+
+      \    }\r
+
+      \r
+
+      \    pm.environment.set(\r
+
+      \        \"projetoQAAutomationAccessToken\",\r
+
+      \        accessToken\r
+
+      \    );\r
+
+      \r
+
+      \    console.log(\"Access token gerado e armazenado com sucesso.\");\r
+
+      });"
+    language: text/javascript
+auth:
+  - id: d6e48425-ce97-4821-95a2-fdec38c9984d
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{projetoQAAutomationAccessToken}}"
+order: 1000

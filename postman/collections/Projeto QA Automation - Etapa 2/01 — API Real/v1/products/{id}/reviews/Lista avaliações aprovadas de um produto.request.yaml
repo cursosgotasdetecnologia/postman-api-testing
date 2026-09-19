@@ -1,0 +1,15 @@
+$kind: http-request
+description: Retorna todas as avaliações aprovadas (is_approved=true) de um produto, com média de notas e contagem.
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id/reviews"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  id: "1"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Lista avaliações aprovadas de um produto.resources/examples
+order: 1000

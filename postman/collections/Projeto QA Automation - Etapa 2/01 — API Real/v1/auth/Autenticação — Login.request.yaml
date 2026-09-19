@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "{{projetoQAAutomationEmail}}",
+      "password": "{{projetoQAAutomationPassword}}"
+    }
+settings: {}
+order: 5000

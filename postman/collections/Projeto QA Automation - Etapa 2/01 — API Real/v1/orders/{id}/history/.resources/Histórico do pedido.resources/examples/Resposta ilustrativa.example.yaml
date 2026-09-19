@@ -1,0 +1,41 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/orders/:id/history"
+  method: GET
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  pathVariables:
+    id: "1"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": {
+          "order_id": 1,
+          "order_number": "ORD-001",
+          "current_status": "pending",
+          "timeline": [
+            {
+              "id": 1,
+              "order_id": 1,
+              "status": "pending",
+              "notes": "Pedido criado",
+              "changed_by": "00000000-0000-4000-8000-000000000001",
+              "created_at": "2026-09-07T00:00:00.000Z"
+            }
+          ]
+        },
+        "mensagens": [
+          "Operação realizada com sucesso."
+        ]
+      }
+order: 1000

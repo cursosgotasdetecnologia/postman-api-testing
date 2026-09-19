@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id/image/:fileId"
+method: GET
+headers:
+  Accept: image/png
+pathVariables:
+  id: "1"
+  fileId: arquivo-exemplo
+settings: {}
+examples: ./.resources/Download de image.resources/examples
+order: 1000

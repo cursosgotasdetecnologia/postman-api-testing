@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers/:id/products"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  - key: id
+    value: "5121"
+    description: ID do fornecedor
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: ./.resources/Lista produtos de um fornecedor.resources/examples
+order: 1000

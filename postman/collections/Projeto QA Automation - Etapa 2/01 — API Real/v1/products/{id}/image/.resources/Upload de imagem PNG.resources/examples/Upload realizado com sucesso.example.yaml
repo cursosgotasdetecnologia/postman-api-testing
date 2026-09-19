@@ -1,0 +1,43 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id/image"
+  method: POST
+  headers:
+    - key: Content-Type
+      value: multipart/form-data
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  pathVariables:
+    id: "1"
+  body:
+    type: formdata
+    content:
+      - type: file
+        key: file
+        src: []
+        description: Arquivo de imagem PNG (máximo 2MB)
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": {
+          "id": "a1b2c3d4-5678-90ef-ghij-klmnopqrstuv",
+          "filename": "a1b2c3d4-5678-90ef-ghij-klmnopqrstuv_foto_produto.png",
+          "size": 485760,
+          "mimetype": "image/png",
+          "productId": 1,
+          "url": "/api/v1/products/1/image/a1b2c3d4-5678-90ef-ghij-klmnopqrstuv"
+        },
+        "mensagens": [
+          "Upload da imagem realizado com sucesso!"
+        ]
+      }
+order: 1000
