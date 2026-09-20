@@ -1,9 +1,0 @@
-$kind: http-request
-description: "SQL equivalente: SELECT p.name, p.price, p.sales_count FROM products p LEFT JOIN reviews r ON r.product_id = p.id WHERE r.id IS NULL AND p.sales_count > 0"
-url: "{{projetoQAAutomationBaseUrl}}/api/v1/reviews/without-reviews"
-method: GET
-headers:
-  Accept: application/json
-settings: {}
-examples: ./.resources/Produtos vendidos sem avaliações (Nova Funcionalidade).resources/examples
-order: 1000

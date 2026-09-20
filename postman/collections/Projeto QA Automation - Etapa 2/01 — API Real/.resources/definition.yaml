@@ -129,6 +129,17 @@ scripts:
 
       });"
     language: text/javascript
+  - type: http:afterResponse
+    code: "// const resposta = pm.response.json();\r
+
+      \r
+
+      // pm.test(\"Relatório deve retornar status 200\", function () {\r
+
+      // pm.response.to.have.status(200);\r
+
+      // });"
+    language: text/javascript
 auth:
   - id: d6e48425-ce97-4821-95a2-fdec38c9984d
     type: bearer
