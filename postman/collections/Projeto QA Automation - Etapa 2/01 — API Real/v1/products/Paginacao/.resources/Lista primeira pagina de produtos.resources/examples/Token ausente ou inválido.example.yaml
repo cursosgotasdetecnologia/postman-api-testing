@@ -1,6 +1,6 @@
 $kind: http-example
 request:
-  url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories?page=1&limit=10"
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/products?page=1&limit=8&search=Gamer&category_id=1&supplier_id=2&sortBy=price&order=asc&is_active=true"
   method: GET
   headers:
     - key: Accept
@@ -9,15 +9,17 @@ request:
       value: Bearer <token>
       description: "Added as a part of security scheme: bearer"
   queryParams:
-    - key: page
-      value: "1"
-      description: Número da página
-    - key: limit
-      value: "10"
-      description: Quantidade de itens por página
+    page: "1"
+    limit: "8"
+    search: Gamer
+    category_id: "1"
+    supplier_id: "2"
+    sortBy: price
+    order: asc
+    is_active: "true"
 response:
-  statusCode: 500
-  statusText: Internal Server Error
+  statusCode: 401
+  statusText: Unauthorized
   headers:
     Content-Type: application/json
   body:
@@ -26,8 +28,7 @@ response:
       {
         "data": null,
         "mensagens": [
-          "Erro ao carregar categorias.",
-          "Exemplo de erro retornado pela API"
+          "Token ausente"
         ]
       }
-order: 4000
+order: 3000

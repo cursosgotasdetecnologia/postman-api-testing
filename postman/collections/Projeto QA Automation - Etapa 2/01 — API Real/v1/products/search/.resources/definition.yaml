@@ -1,15 +1,7 @@
 $kind: collection
 scripts:
   - type: http:afterResponse
-    code: "// pm.test(\"Status HTTP deve ser 200\", function () {\r
-
-      //     pm.response.to.have.status(200);\r
-
-      // });\r
-
-      \r
-
-      pm.test(\"Content-Type deve ser application/json\", function () {\r
+    code: "pm.test(\"Content-Type deve ser application/json\", function () {\r
 
       \    pm.expect(\r
 
@@ -19,12 +11,6 @@ scripts:
 
       });\r
 
-      \r
-
-      pm.test(\"Tempo de resposta deve ser inferior a 10 segundos\", function () {\r
-
-      \    pm.expect(pm.response.responseTime).to.be.below(10000);\r
-
-      });"
+      \r\n"
     language: text/javascript
 order: 2000

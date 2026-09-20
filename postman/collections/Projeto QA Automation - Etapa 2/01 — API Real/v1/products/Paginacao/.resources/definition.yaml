@@ -1,0 +1,48 @@
+$kind: collection
+scripts:
+  - type: http:afterResponse
+    code: "const resposta = pm.response.json(); \r
+
+      const paginacao = resposta.pagination; \r
+
+      \r
+
+      pm.test(\"Resposta utiliza formato JSON\", function () { \r
+
+      \    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); }); \r
+
+      \    \r
+
+      pm.test(\"Resposta apresenta uma lista de produtos\", function () { \r
+
+      \        pm.expect(resposta.data).to.be.an(\"array\"); }); \r
+
+      \    \r
+
+      pm.test(\"Paginação apresenta a estrutura esperada\", function () { \r
+
+      \        pm.expect(paginacao).to.be.an(\"object\"); \r
+
+      \        pm.expect(paginacao.page).to.be.a(\"number\");\r
+
+      \        pm.expect(paginacao.limit).to.be.a(\"number\"); \r
+
+      \        pm.expect(paginacao.total).to.be.a(\"number\"); \r
+
+      \        pm.expect(paginacao.totalPages).to.be.a(\"number\"); }); \r
+
+      \r
+
+      pm.test(\"Quantidade retornada respeita o limite solicitado\", function () { \r
+
+      \        pm.expect(resposta.data.length).to.be.at.most(paginacao.limit); }); \r
+
+      \ \r
+
+      \ pm.test(\"Total de páginas apresenta valor coerente\", function () { const totalEsperado = Math.ceil(paginacao.total / paginacao.limit); pm.expect(paginacao.totalPages).to.eql(totalEsperado); \r
+
+      \        \r
+
+      });\r\n"
+    language: text/javascript
+order: 11000

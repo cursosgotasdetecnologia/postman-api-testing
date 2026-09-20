@@ -1,0 +1,39 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories"
+  method: POST
+  headers:
+    - key: Content-Type
+      value: application/json
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  body:
+    type: json
+    content: |-
+      {
+        "name": "Eletrônicos",
+        "description": "Produtos eletrônicos variados"
+      }
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": {
+          "id": 1,
+          "name": "Eletrônicos",
+          "description": "Produtos eletrônicos variados",
+          "slug": "eletronicos"
+        },
+        "mensagens": [
+          "Categoria criada"
+        ]
+      }
+order: 1000

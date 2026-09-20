@@ -1,0 +1,60 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers/:id/products"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  - key: id
+    value: "30"
+    description: ID do fornecedor
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json(); \r
+
+      pm.test(\"Consulta é realizada com sucesso\", function () {\r
+
+      \    pm.response.to.have.status(200); });      \r
+
+      \r
+
+      pm.test(\"Resposta apresenta as propriedades esperadas\", function () { \r
+
+      \    pm.expect(resposta).to.have.property(\"data\"); \r
+
+      \    pm.expect(resposta).to.have.property(\"pagination\"); \r
+
+      \    pm.expect(resposta).to.have.property(\"mensagens\"); }); \r
+
+      \r
+
+      pm.test(\"Fornecedor sem produtos retorna uma lista vazia\", function () { \r
+
+      \    pm.expect(resposta.data).to.be.an(\"array\").and.empty; }); \r
+
+      \r
+
+      pm.test(\"Paginação apresenta valores coerentes para uma lista vazia\", function () { \r
+
+      \    pm.expect(resposta.pagination.total).to.eql(0); \r
+
+      \    pm.expect(resposta.pagination.totalPages).to.eql(0); }); \r
+
+      \r
+
+      pm.test(\"Fornecedor sem produtos retorna mensagem informativa\", function () { \r
+
+      \    pm.expect(resposta.mensagens).to.be.an(\"array\").and.not.empty; \r
+
+      \    pm.expect( resposta.mensagens[0].toLowerCase() ).to.include(\"nenhum produto\"); });\r
+
+      \r
+
+      \    "
+    language: text/javascript
+settings: {}
+examples: .resources/Consultar fornecedor sem produtos cadastrados.resources/examples
+order: 2000

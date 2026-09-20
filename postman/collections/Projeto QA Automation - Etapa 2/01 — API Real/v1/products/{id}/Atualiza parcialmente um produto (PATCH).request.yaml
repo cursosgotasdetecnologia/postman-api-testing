@@ -20,4 +20,4 @@ auth:
     token: "{{projetoQAAutomationAccessToken}}"
 settings: {}
 examples: ./.resources/Atualiza parcialmente um produto (PATCH).resources/examples
-order: 6000
+order: 7000

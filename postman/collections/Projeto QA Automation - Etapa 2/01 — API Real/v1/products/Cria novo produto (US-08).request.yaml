@@ -21,4 +21,4 @@ auth:
     token: "{{projetoQAAutomationAccessToken}}"
 settings: {}
 examples: ./.resources/Cria novo produto (US-08).resources/examples
-order: 7000
+order: 9000

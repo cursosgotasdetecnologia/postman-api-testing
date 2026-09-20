@@ -1,6 +1,6 @@
 $kind: http-example
 request:
-  url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories?page=1&limit=10"
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/:id"
   method: GET
   headers:
     - key: Accept
@@ -8,13 +8,8 @@ request:
     - key: Authorization
       value: Bearer <token>
       description: "Added as a part of security scheme: bearer"
-  queryParams:
-    - key: page
-      value: "1"
-      description: Número da página
-    - key: limit
-      value: "10"
-      description: Quantidade de itens por página
+  pathVariables:
+    id: "1"
 response:
   statusCode: 401
   statusText: Unauthorized
@@ -26,7 +21,7 @@ response:
       {
         "data": null,
         "mensagens": [
-          "Exemplo de erro retornado pela API"
+          "Token ausente"
         ]
       }
 order: 3000

@@ -24,4 +24,4 @@ auth:
     token: "{{projetoQAAutomationAccessToken}}"
 settings: {}
 examples: ./.resources/Atualiza produto (PUT completo).resources/examples
-order: 5000
+order: 6000

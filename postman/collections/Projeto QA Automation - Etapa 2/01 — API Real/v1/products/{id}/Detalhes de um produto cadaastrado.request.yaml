@@ -11,5 +11,5 @@ auth:
   credentials:
     token: "{{projetoQAAutomationAccessToken}}"
 settings: {}
-examples: ./.resources/Detalhes do produto.resources/examples
-order: 4000
+examples: .resources/Detalhes de um produto cadaastrado.resources/examples
+order: 4379

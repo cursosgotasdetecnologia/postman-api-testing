@@ -1,0 +1,45 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories"
+  method: POST
+  headers:
+    Content-Type: application/json
+    Accept: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "name": "Eletrônicos",
+        "description": "Produtos eletrônicos variados"
+      }
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    :status: "400"
+    access-control-allow-credentials: "true"
+    access-control-allow-headers: Content-Type, Authorization, X-Requested-With, Accept, Origin
+    access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS, PATCH
+    access-control-allow-origin: "*"
+    access-control-max-age: "86400"
+    cache-control: no-store, no-cache, must-revalidate, proxy-revalidate
+    content-type: application/json
+    date: Sat, 12 Sep 2026 19:36:31 GMT
+    expires: "0"
+    pragma: no-cache
+    server: Vercel
+    strict-transport-security: max-age=63072000; includeSubDomains; preload
+    vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+    x-matched-path: /api/v1/categories
+    x-vercel-cache: MISS
+    x-vercel-id: gru1::gru1::tnngg-1789241791293-043878680f27
+  body:
+    type: text
+    content: |-
+      {
+          "data": null,
+          "mensagens": [
+              "Categoria com dados duplicados."
+          ]
+      }
+order: 4000

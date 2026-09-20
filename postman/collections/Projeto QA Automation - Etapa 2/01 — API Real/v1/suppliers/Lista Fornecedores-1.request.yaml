@@ -1,9 +1,0 @@
-$kind: http-request
-name: Lista Fornecedores
-url: "{{projetoQAAutomationBaseUrl}}/suppliers"
-method: GET
-headers:
-  accept: application/json
-  Authorization: "Bearer "
-settings: {}
-order: 4000

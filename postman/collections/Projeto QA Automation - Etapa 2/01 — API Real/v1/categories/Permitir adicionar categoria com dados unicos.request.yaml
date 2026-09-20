@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Eletrônicos",
+      "description": "Produtos eletrônicos variados"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+settings: {}
+examples: .resources/Permitir adicionar categoria com dados unicos.resources/examples
+order: 5000

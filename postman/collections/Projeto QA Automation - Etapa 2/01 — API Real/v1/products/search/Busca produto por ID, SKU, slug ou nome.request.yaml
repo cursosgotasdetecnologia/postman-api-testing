@@ -21,6 +21,10 @@ queryParams:
     value: Mouse
     disabled: false
     description: Nome completo e exato do produto
+scripts:
+  - type: afterResponse
+    code: ""
+    language: text/javascript
 settings: {}
 examples: ./.resources/Busca produto por ID, SKU, slug ou nome.resources/examples
 order: 1000

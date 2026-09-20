@@ -1,0 +1,59 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products?page=1&limit=5"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  - key: page
+    value: "1"
+    disabled: false
+    description: ""
+  - key: limit
+    value: "5"
+    disabled: false
+    description: ""
+  - key: search
+    value: Gamer
+    disabled: true
+    description: ""
+  - key: category_id
+    value: "1"
+    disabled: true
+    description: ""
+  - key: supplier_id
+    value: "2"
+    disabled: true
+    description: ""
+  - key: sortBy
+    value: price
+    disabled: true
+    description: ""
+  - key: order
+    value: asc
+    disabled: true
+    description: ""
+  - key: is_active
+    value: "true"
+    disabled: true
+    description: ""
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json(); \r
+
+      \r
+
+      pm.test(\"Resposta retorna status HTTP 200\", function () { \r
+
+      \    pm.response.to.have.status(200); }); \r
+
+      pm.test(\"Consulta retorna a primeira página solicitada\", function () { \r
+
+      \    pm.expect(resposta.pagination.page).to.eql(1); });"
+    language: text/javascript
+settings: {}
+examples: .resources/Lista primeira pagina de produtos.resources/examples
+order: 1789931934211
