@@ -3,9 +3,9 @@ values:
   - key: projetoQAAutomationBaseUrl
     value: 'https://northwind-test-platform.vercel.app'
   - key: projetoQAAutomationEmail
-    value: ''
+    value: 'admin@qatest.com'
   - key: projetoQAAutomationPassword
-    value: ''
+    value: 'Teste@123'
   - key: projetoQAAutomationAccessToken
     value: ''
   - key: projetoQAAutomationMockUrl
