@@ -1,0 +1,462 @@
+{
+  "info": {
+    "_postman_id": "c20fd52b-1506-45b5-8326-06e1fb813027",
+    "name": "projeto-postman-advanced",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15307284"
+  },
+  "item": [
+    {
+      "name": "login",
+      "item": [
+        {
+          "name": "permitir-login-credenciais-válidas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const resposta = pm.response.json(); \r\npm.test(\"Login é realizado com sucesso\", function () {\r\n     pm.response.to.have.status(200); }); \r\n\r\n    pm.test(\"Resposta utiliza formato JSON\", function () { \r\n        pm.expect( pm.response.headers.get(\"Content-Type\") ).to.include(\"application/json\"); \r\n    }); \r\n\r\n    pm.test(\"Login retorna token de acesso válido\", function () { \r\n    pm.expect(resposta.data.token).to.be.a(\"string\").and.not.empty; }); \r\n\r\n    pm.test(\"Usuário autenticado apresenta informações principais\", function () { \r\n        pm.expect(resposta.data.user).to.be.an(\"object\"); \r\n        pm.expect(resposta.data.user).to.have.property(\"id\"); \r\n        pm.expect(resposta.data.user).to.have.property(\"email\");\r\n        pm.expect(resposta.data.user).to.have.property(\"role\"); }); if (resposta?.data?.token) { \r\n        \r\n    pm.environment.set( \"projetoQAAutomationAccessToken\", resposta.data.token ); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{projetoQAAutomationEmail}}\",\n  \"password\": \"{{projetoQAAutomationPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{projetoQAAutomationBaseUrl}}/api/v1/auth/login",
+              "host": [
+                "{{projetoQAAutomationBaseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "impedir-login-credenciais-inválidas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const resposta = pm.response.json(); \r\n\r\npm.test(\"Credenciais inválidas são rejeitadas\", function () { \r\n    pm.response.to.have.status(404); }); \r\n    \r\npm.test(\"Resposta de erro utiliza formato JSON\", function () {   \r\n    pm.expect( pm.response.headers.get(\"Content-Type\") ).to.include(\"application/json\"); }); \r\n\r\npm.test(\"Resposta apresenta mensagem de autenticação\", function () { \r\n   pm.expect(resposta.mensagens).to.be.an(\"array\").and.not.empty;\r\n\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"usuriao@gmail.com.br\",\n  \"password\": \"SenhaIvalida\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{projetoQAAutomationBaseUrl}}/api/v1/auth/login",
+              "host": [
+                "{{projetoQAAutomationBaseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "products",
+      "item": [
+        {
+          "name": "exibir-primeira-pagina-produtos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const resposta = pm.response.json(); \r\n\r\npm.test(\"Resposta retorna status HTTP 200\", function () { \r\n    pm.response.to.have.status(200); }); \r\npm.test(\"Consulta retorna a primeira página solicitada\", function () { \r\n    pm.expect(resposta.pagination.page).to.eql(1); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{projetoQAAutomationAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{projetoQAAutomationBaseUrl}}/api/v1/products?page=1&limit=5",
+              "host": [
+                "{{projetoQAAutomationBaseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "search",
+                  "value": "Gamer",
+                  "disabled": true
+                },
+                {
+                  "key": "category_id",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "supplier_id",
+                  "value": "2",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "price",
+                  "disabled": true
+                },
+                {
+                  "key": "order",
+                  "value": "asc",
+                  "disabled": true
+                },
+                {
+                  "key": "is_active",
+                  "value": "true",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "exibir-segunda-pagina-produtos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const resposta = pm.response.json(); \r\n\r\npm.test(\"Resposta retorna status HTTP 200\", function () { \r\n    pm.response.to.have.status(200); }); \r\npm.test(\"Consulta retorna a segunda página solicitada\", function () { \r\n    pm.expect(resposta.pagination.page).to.eql(2); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{projetoQAAutomationAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{projetoQAAutomationBaseUrl}}/api/v1/products?page=2&limit=5",
+              "host": [
+                "{{projetoQAAutomationBaseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "search",
+                  "value": "Gamer",
+                  "disabled": true
+                },
+                {
+                  "key": "category_id",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "supplier_id",
+                  "value": "2",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "price",
+                  "disabled": true
+                },
+                {
+                  "key": "order",
+                  "value": "asc",
+                  "disabled": true
+                },
+                {
+                  "key": "is_active",
+                  "value": "true",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "categories",
+      "item": [
+        {
+          "name": "exibir-categorias-cadastradas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const resposta = pm.response.json(); const paginacao = resposta.pagination; \r\npm.test(\"Consulta de categorias é realizada com sucesso\", function () { \r\n    pm.response.to.have.status(200); }); \r\npm.test(\"Resposta apresenta uma lista de categorias\", function () { \r\n    pm.expect(resposta.data).to.be.an(\"array\"); }); \r\n\r\npm.test(\"Paginação de categorias apresenta a estrutura esperada\", function () { \r\n    pm.expect(paginacao).to.be.an(\"object\"); \r\n    pm.expect(paginacao.currentPage).to.be.a(\"number\"); \r\n    pm.expect(paginacao.totalPages).to.be.a(\"number\"); \r\n    pm.expect(paginacao.totalItems).to.be.a(\"number\"); \r\n    pm.expect(paginacao.itemsPerPage).to.be.a(\"number\"); }); \r\n    \r\npm.test(\"Categorias apresentam informações principais\", function () { \r\n    resposta.data.forEach(function (categoria) {\r\n    pm.expect(categoria).to.have.property(\"id\"); pm.expect(categoria.name).to.be.a(\"string\").and.not.empty; }); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{projetoQAAutomationAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{projetoQAAutomationBaseUrl}}/api/v1/categories?page=1&limit=5",
+              "host": [
+                "{{projetoQAAutomationBaseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "categories"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Número da página"
+                },
+                {
+                  "key": "limit",
+                  "value": "5",
+                  "description": "Quantidade de itens por página"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "suppliers",
+      "item": [
+        {
+          "name": "listar-produtos-de-fornecedor",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const response = pm.response.json();\r\n\r\npm.test(\"Status HTTP 200\", function () {\r\npm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Content-Type é JSON\", function () {\r\npm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r\n});\r\n\r\npm.test(\"Tempo de resposta inferior a 300 ms\", function () {\r\npm.expect(pm.response.responseTime).to.be.below(300);\r\n});\r\n\r\npm.test(\"Resposta possui data, pagination e mensagens\", function () {\r\npm.expect(response).to.have.property(\"data\");\r\npm.expect(response).to.have.property(\"pagination\");\r\npm.expect(response).to.have.property(\"mensagens\");\r\n});\r\n\r\npm.test(\"data é um array vazio\", function () {\r\npm.expect(response.data).to.be.an(\"array\");\r\npm.expect(response.data).to.have.lengthOf(0);\r\n});\r\n\r\npm.test(\"pagination é um objeto\", function () {\r\npm.expect(response.pagination).to.be.an(\"object\");\r\npm.expect(response.pagination).to.not.be.an(\"array\");\r\n});\r\n\r\npm.test(\"Campos da paginação possuem tipos válidos\", function () {\r\npm.expect(response.pagination.page).to.be.a(\"number\");\r\npm.expect(response.pagination.limit).to.be.a(\"number\");\r\npm.expect(response.pagination.total).to.be.a(\"number\");\r\npm.expect(response.pagination.totalPages).to.be.a(\"number\");\r\n});\r\n\r\npm.test(\"Paginação é coerente para resposta sem registros\", function () {\r\npm.expect(response.pagination.page).to.be.at.least(1);\r\npm.expect(response.pagination.limit).to.be.above(0);\r\npm.expect(response.pagination.total).to.eql(0);\r\npm.expect(response.pagination.totalPages).to.eql(0);\r\npm.expect(response.data.length).to.eql(0);\r\n});\r\n\r\npm.test(\"mensagens é um array não vazio\", function () {\r\npm.expect(response.mensagens).to.be.an(\"array\");\r\npm.expect(response.mensagens.length).to.be.above(0);\r\n});\r\n\r\npm.test(\"Mensagem informa que nenhum produto está cadastrado\", function () {\r\nconst mensagemEncontrada = response.mensagens.some(function (mensagem) {\r\nreturn typeof mensagem === \"string\" &&\r\n/nenhum produto cadastrado/i.test(mensagem);\r\n});\r\n\r\npm.expect(mensagemEncontrada).to.be.true;\r\n\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{projetoQAAutomationAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers/:id/products",
+              "host": [
+                "{{projetoQAAutomationBaseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "suppliers",
+                ":id",
+                "products"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "30"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "validar-mensagem-fornecedor-sem-produtos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const resposta = pm.response.json(); \r\npm.test(\"Consulta é realizada com sucesso\", function () {\r\n    pm.response.to.have.status(200); });      \r\n\r\npm.test(\"Resposta apresenta as propriedades esperadas\", function () { \r\n    pm.expect(resposta).to.have.property(\"data\"); \r\n    pm.expect(resposta).to.have.property(\"pagination\"); \r\n    pm.expect(resposta).to.have.property(\"mensagens\"); }); \r\n\r\npm.test(\"Fornecedor sem produtos retorna uma lista vazia\", function () { \r\n    pm.expect(resposta.data).to.be.an(\"array\").and.empty; }); \r\n\r\npm.test(\"Paginação apresenta valores coerentes para uma lista vazia\", function () { \r\n    pm.expect(resposta.pagination.total).to.eql(0); \r\n    pm.expect(resposta.pagination.totalPages).to.eql(0); }); \r\n\r\npm.test(\"Fornecedor sem produtos retorna mensagem informativa\", function () { \r\n    pm.expect(resposta.mensagens).to.be.an(\"array\").and.not.empty; \r\n    pm.expect( resposta.mensagens[0].toLowerCase() ).to.include(\"nenhum produto\"); });\r\n\r\n    "
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{projetoQAAutomationAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers/:id/products",
+              "host": [
+                "{{projetoQAAutomationBaseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "suppliers",
+                ":id",
+                "products"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "30"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.test(\"Tempo de resposta deve ser inferior a 15 segundos\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(15000);\r\n});"
+        ]
+      }
+    }
+  ]
+}
