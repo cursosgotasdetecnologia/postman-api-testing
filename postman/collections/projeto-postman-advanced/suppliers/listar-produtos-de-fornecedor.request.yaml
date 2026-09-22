@@ -1,0 +1,130 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers/:id/products"
+method: GET
+pathVariables:
+  id: "30"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const response = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Status HTTP 200\", function () {\r
+
+      pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Content-Type é JSON\", function () {\r
+
+      pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Tempo de resposta inferior a 300 ms\", function () {\r
+
+      pm.expect(pm.response.responseTime).to.be.below(300);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta possui data, pagination e mensagens\", function () {\r
+
+      pm.expect(response).to.have.property(\"data\");\r
+
+      pm.expect(response).to.have.property(\"pagination\");\r
+
+      pm.expect(response).to.have.property(\"mensagens\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"data é um array vazio\", function () {\r
+
+      pm.expect(response.data).to.be.an(\"array\");\r
+
+      pm.expect(response.data).to.have.lengthOf(0);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"pagination é um objeto\", function () {\r
+
+      pm.expect(response.pagination).to.be.an(\"object\");\r
+
+      pm.expect(response.pagination).to.not.be.an(\"array\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Campos da paginação possuem tipos válidos\", function () {\r
+
+      pm.expect(response.pagination.page).to.be.a(\"number\");\r
+
+      pm.expect(response.pagination.limit).to.be.a(\"number\");\r
+
+      pm.expect(response.pagination.total).to.be.a(\"number\");\r
+
+      pm.expect(response.pagination.totalPages).to.be.a(\"number\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Paginação é coerente para resposta sem registros\", function () {\r
+
+      pm.expect(response.pagination.page).to.be.at.least(1);\r
+
+      pm.expect(response.pagination.limit).to.be.above(0);\r
+
+      pm.expect(response.pagination.total).to.eql(0);\r
+
+      pm.expect(response.pagination.totalPages).to.eql(0);\r
+
+      pm.expect(response.data.length).to.eql(0);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"mensagens é um array não vazio\", function () {\r
+
+      pm.expect(response.mensagens).to.be.an(\"array\");\r
+
+      pm.expect(response.mensagens.length).to.be.above(0);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Mensagem informa que nenhum produto está cadastrado\", function () {\r
+
+      const mensagemEncontrada = response.mensagens.some(function (mensagem) {\r
+
+      return typeof mensagem === \"string\" &&\r
+
+      /nenhum produto cadastrado/i.test(mensagem);\r
+
+      });\r
+
+      \r
+
+      pm.expect(mensagemEncontrada).to.be.true;\r
+
+      \r
+
+      });"
+    language: text/javascript
+order: 1790007059142

@@ -1,5 +1,8 @@
 workspace:
   id: 1c33b5d3-192b-4557-ad5b-b938b44625ff
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
 cloudResources:
   collections:
     ../postman/collections/Projeto QA Automation - Etapa 2: 15307284-5db2e029-c214-4e16-a26d-b460ac3937b8

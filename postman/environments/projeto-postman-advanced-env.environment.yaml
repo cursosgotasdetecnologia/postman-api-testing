@@ -1,0 +1,11 @@
+name: projeto-postman-advanced-env
+values:
+  - key: projetoQAAutomationBaseUrl
+    value: 'https://northwind-test-platform.vercel.app'
+  - key: projetoQAAutomationEmail
+    value: ''
+  - key: projetoQAAutomationPassword
+    value: ''
+  - key: projetoQAAutomationAccessToken
+    value: ''
+color: 0

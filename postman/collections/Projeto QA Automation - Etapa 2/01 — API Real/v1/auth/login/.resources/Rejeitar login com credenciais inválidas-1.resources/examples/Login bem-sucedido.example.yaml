@@ -1,0 +1,38 @@
+$kind: http-example
+request:
+  url: "{{projetoQAAutomationBaseUrl}}/api/v1/auth/login"
+  method: POST
+  headers:
+    Content-Type: application/json
+    Accept: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "email": "{{projetoQAAutomationEmail}}",
+        "password": "{{projetoQAAutomationPassword}}"
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": {
+          "token": "",
+          "user": {
+            "id": "a2ba45af-e254-424b-9bf7-38bf7b8ccda4",
+            "full_name": "Maria Silva Santos",
+            "email": "maria.silva@exemplo.com.br",
+            "role": "customer",
+            "is_active": true
+          }
+        },
+        "mensagens": [
+          "Login realizado com sucesso!"
+        ]
+      }
+order: 1000

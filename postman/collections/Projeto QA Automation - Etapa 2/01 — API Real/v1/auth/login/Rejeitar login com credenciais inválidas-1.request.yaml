@@ -1,0 +1,44 @@
+$kind: http-request
+name: Rejeitar login com credenciais inválidas
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "usuriao@gmail.com.br",
+      "password": "SenhaIvalida"
+    }
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json(); \r
+
+      \r
+
+      pm.test(\"Credenciais inválidas são rejeitadas\", function () { \r
+
+      \    pm.response.to.have.status(404); }); \r
+
+      \    \r
+
+      pm.test(\"Resposta de erro utiliza formato JSON\", function () {   \r
+
+      \    pm.expect( pm.response.headers.get(\"Content-Type\")
+      ).to.include(\"application/json\"); }); \r
+
+      \r
+
+      pm.test(\"Resposta apresenta mensagem de autenticação\", function () { \r
+
+      \   pm.expect(resposta.mensagens).to.be.an(\"array\").and.not.empty;\r
+
+      \r
+
+      });"
+    language: text/javascript
+settings: {}
+examples: .resources/Rejeitar login com credenciais inválidas-1.resources/examples
+order: 3904
