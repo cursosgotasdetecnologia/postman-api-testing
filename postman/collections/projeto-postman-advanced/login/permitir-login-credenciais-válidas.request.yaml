@@ -11,6 +11,10 @@ body:
       "email": "{{projetoQAAutomationEmail}}",
       "password": "{{projetoQAAutomationPassword}}"
     }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
 scripts:
   - type: afterResponse
     code: "const resposta = pm.response.json(); \r

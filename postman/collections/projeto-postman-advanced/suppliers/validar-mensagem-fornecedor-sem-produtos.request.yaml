@@ -27,13 +27,15 @@ scripts:
 
       \r
 
-      pm.test(\"Fornecedor sem produtos retorna uma lista vazia\", function () { \r
+      pm.test(\"Fornecedor sem produtos retorna uma lista vazia\", function () {
+      \r
 
       \    pm.expect(resposta.data).to.be.an(\"array\").and.empty; }); \r
 
       \r
 
-      pm.test(\"Paginação apresenta valores coerentes para uma lista vazia\", function () { \r
+      pm.test(\"Paginação apresenta valores coerentes para uma lista vazia\",
+      function () { \r
 
       \    pm.expect(resposta.pagination.total).to.eql(0); \r
 
@@ -41,14 +43,16 @@ scripts:
 
       \r
 
-      pm.test(\"Fornecedor sem produtos retorna mensagem informativa\", function () { \r
+      pm.test(\"Fornecedor sem produtos retorna mensagem informativa\", function
+      () { \r
 
       \    pm.expect(resposta.mensagens).to.be.an(\"array\").and.not.empty; \r
 
-      \    pm.expect( resposta.mensagens[0].toLowerCase() ).to.include(\"nenhum produto\"); });\r
+      \    pm.expect( resposta.mensagens[0].toLowerCase() ).to.include(\"nenhum
+      produto\"); });\r
 
       \r
 
       \    "
     language: text/javascript
-order: 4146595355244086
+order: 3000

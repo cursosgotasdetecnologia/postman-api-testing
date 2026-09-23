@@ -1,0 +1,149 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories/{{projetoQAAutomationCategoryId}}/products?page=1&limit=5"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  - key: page
+    value: "1"
+    disabled: false
+    description: Número da página
+  - key: limit
+    value: "5"
+    disabled: false
+    description: Quantidade de itens por página
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const respostaProdutosCategoria = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Produtos da categoria são consultados com sucesso\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Consulta da categoria utiliza formato JSON\", function () {\r
+
+      \    pm.expect(\r
+
+      \        pm.response.headers.get(\"Content-Type\")\r
+
+      \    ).to.include(\"application/json\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta apresenta uma lista de produtos\", function () {\r
+
+      \    pm.expect(respostaProdutosCategoria.data)\r
+
+      \        .to.be.an(\"array\")\r
+
+      \        .that.is.not.empty;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Produtos apresentam as propriedades principais\", function () {\r
+
+      \    respostaProdutosCategoria.data.forEach(function (produto) {\r
+
+      \        pm.expect(produto).to.include.all.keys(\r
+
+      \            \"id\",\r
+
+      \            \"name\",\r
+
+      \            \"price\",\r
+
+      \            \"stock_quantity\",\r
+
+      \            \"sku\",\r
+
+      \            \"slug\"\r
+
+      \        );\r
+
+      \    });\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Produtos apresentam valores numéricos válidos\", function () {\r
+
+      \    respostaProdutosCategoria.data.forEach(function (produto) {\r
+
+      \        pm.expect(produto.price).to.be.a(\"number\");\r
+
+      \        pm.expect(produto.price).to.be.at.least(0);\r
+
+      \        pm.expect(produto.stock_quantity).to.be.a(\"number\");\r
+
+      \        pm.expect(produto.stock_quantity).to.be.at.least(0);\r
+
+      \    });\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta apresenta estrutura de paginação\", function () {\r
+
+      \    pm.expect(respostaProdutosCategoria.pagination).to.be.an(\"object\");\r
+
+      \    pm.expect(respostaProdutosCategoria.pagination)\r
+
+      \        .to.include.all.keys(\r
+
+      \            \"page\",\r
+
+      \            \"limit\",\r
+
+      \            \"total\",\r
+
+      \            \"totalPages\"\r
+
+      \        );\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Paginação respeita os parâmetros solicitados\", function () {\r
+
+      \    pm.expect(respostaProdutosCategoria.pagination.page).to.eql(1);\r
+
+      \    pm.expect(respostaProdutosCategoria.pagination.limit).to.eql(5);\r
+
+      \    pm.expect(respostaProdutosCategoria.pagination.total).to.be.above(0);\r
+
+      \    pm.expect(respostaProdutosCategoria.pagination.totalPages).to.be.above(0);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Consulta apresenta mensagem informativa\", function () {\r
+
+      \    pm.expect(respostaProdutosCategoria.mensagens)\r
+
+      \        .to.be.an(\"array\")\r
+
+      \        .that.is.not.empty;\r
+
+      });"
+    language: text/javascript
+settings: {}
+examples: .resources/listar-produtos-de-categoria.resources/examples
+order: 2000

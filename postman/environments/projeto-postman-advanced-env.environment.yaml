@@ -8,4 +8,10 @@ values:
     value: ''
   - key: projetoQAAutomationAccessToken
     value: ''
+  - key: projetoQAAutomationProductId
+    value: ''
+  - key: projetoQAAutomationCategoryId
+    value: ''
+  - key: projetoQAAutomationSupplierId
+    value: ''
 color: 0

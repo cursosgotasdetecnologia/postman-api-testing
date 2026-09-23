@@ -1,2 +1,4 @@
 $kind: collection
+auth:
+  type: bearer
 order: 4122545971887501

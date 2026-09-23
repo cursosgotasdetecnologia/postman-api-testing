@@ -1,0 +1,58 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers/{{projetoQAAutomationSupplierId}}"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const respostaFornecedorPorId = pm.response.json(); \r
+
+      const fornecedorConsultado = respostaFornecedorPorId.data;\r
+
+      \r
+
+      pm.test(\"Fornecedor existente é consultado com sucesso\", function () { \r
+
+      \    pm.response.to.have.status(200); }); \r
+
+      \r
+
+      pm.test(\"Consulta do fornecedor utiliza formato JSON\", function () { \r
+
+      \    pm.expect( \r
+
+      \    pm.response.headers.get(\"Content-Type\") ).to.include(\"application/json\"); }); \r
+
+      \    \r
+
+      pm.test(\"Resposta apresenta um fornecedor estruturado\", function () { \r
+
+      \    pm.expect(fornecedorConsultado).to.be.an(\"object\"); }); \r
+
+      \    \r
+
+      pm.test(\"Fornecedor retornado possui o ID solicitado\", function () { \r
+
+      \    pm.expect(fornecedorConsultado.id).to.eql( Number( pm.environment.get(\"projetoQAAutomationSupplierId\") ) ); }); \r
+
+      \r
+
+      pm.test(\"Fornecedor apresenta as propriedades principais\", function () { \r
+
+      \    pm.expect(fornecedorConsultado).to.include.all.keys( \"id\", \"company_name\", \"contact_name\", \"email\", \"cnpj\", \"country\", \"is_active\" ); }); \r
+
+      \r
+
+      pm.test(\"Status do fornecedor utiliza tipo booleano\", function () {\r
+
+      \    pm.expect(fornecedorConsultado.is_active).to.be.a(\"boolean\"); }); \r
+
+      \r
+
+      pm.test(\"Consulta retorna mensagem informativa\", function () { \r
+
+      \    pm.expect(respostaFornecedorPorId.mensagens) .to.be.an(\"array\") .that.is.not.empty; });"
+    language: text/javascript
+order: 2000

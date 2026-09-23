@@ -53,8 +53,48 @@ scripts:
       pm.test(\"Consulta retorna a primeira página solicitada\", function () {
       \r
 
-      \    pm.expect(resposta.pagination.page).to.eql(1); });"
+      \    pm.expect(resposta.pagination.page).to.eql(1); });\r
+
+      \r
+
+      \r
+
+      const respostaProdutos = pm.response.json(); \r
+
+      \r
+
+      const primeiroProduto = respostaProdutos.data[0];\r
+
+      \r
+
+      \ pm.test(\"Primeiro produto fornece os identificadores necessários\",
+      function () { \r
+
+      \    pm.expect(primeiroProduto).to.be.an(\"object\"); \r
+
+      \    pm.expect(primeiroProduto.id).to.exist; \r
+
+      \    pm.expect(primeiroProduto.category_id).to.exist; \r
+
+      \    pm.expect(primeiroProduto.supplier_id).to.exist; }); \r
+
+      \    \r
+
+      \    pm.environment.set( \"projetoQAAutomationProductId\",
+      primeiroProduto.id );\r
+
+      \    \r
+
+      \    pm.environment.set( \"projetoQAAutomationCategoryId\",
+      primeiroProduto.category_id ); \r
+
+      \     \r
+
+      \    pm.environment.set( \"projetoQAAutomationSupplierId\",
+      primeiroProduto.supplier_id );    \r
+
+      \    "
     language: text/javascript
 settings: {}
 examples: .resources/exibir-primeira-pagina-produtos.resources/examples
-order: 1252376969223940
+order: 1000

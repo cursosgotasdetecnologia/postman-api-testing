@@ -1,0 +1,68 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/{{projetoQAAutomationProdu\
+  ctId}}"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const respostaProdutoPorId = pm.response.json(); \r
+
+      const produtoConsultado = respostaProdutoPorId.data; \r
+
+      \r
+
+      pm.test(\"Produto existente é consultado com sucesso\", function () { \r
+
+      \    pm.response.to.have.status(200); }); pm.test(\"Consulta do produto
+      utiliza formato JSON\", function () { \r
+
+      \    pm.expect( pm.response.headers.get(\"Content-Type\")
+      ).to.include(\"application/json\"); }); \r
+
+      \r
+
+      pm.test(\"Resposta apresenta um produto estruturado\", function () { \r
+
+      \    pm.expect(produtoConsultado).to.be.an(\"object\"); }); \r
+
+      \    \r
+
+      pm.test(\"Produto retornado possui o ID solicitado\", function () { \r
+
+      \    pm.expect(produtoConsultado.id).to.eql( Number( \r
+
+      \    pm.environment.get(\"projetoQAAutomationProductId\") ) ); }); \r
+
+      \r
+
+      pm.test(\"Produto apresenta as propriedades principais\", function () { \r
+
+      \    pm.expect(produtoConsultado).to.include.all.keys( \"id\", \"name\",
+      \"price\", \"stock_quantity\", \"sku\", \"category_id\", \"supplier_id\",
+      \"slug\" ); }); \r
+
+      \r
+
+      pm.test(\"Preço e estoque apresentam tipos válidos\", function () { \r
+
+      \    pm.expect(produtoConsultado.price).to.be.a(\"number\"); \r
+
+      \    pm.expect(produtoConsultado.price).to.be.at.least(0);\r
+
+      \    pm.expect(produtoConsultado.stock_quantity).to.be.a(\"number\"); \r
+
+      \    pm.expect(produtoConsultado.stock_quantity).to.be.at.least(0); }); \r
+
+      \r
+
+      pm.test(\"Consulta retorna uma mensagem informativa\", function () { \r
+
+      \    pm.expect(respostaProdutoPorId.mensagens) .to.be.an(\"array\")
+      .that.is.not.empty; });\r
+
+      \    "
+    language: text/javascript
+order: 4000
