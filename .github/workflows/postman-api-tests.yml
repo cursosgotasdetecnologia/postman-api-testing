@@ -18,7 +18,7 @@ jobs:
         uses: postmanlabs/postman-cli-action@v1
         with:
           command: >-
-            collection run "postman/collections/projeto-postman-advanced"
-            --environment "postman/environments/projeto-postman-advanced-env.environment.yaml"
-            --env-var "projetoQAAutomationEmail=${{ secrets.POSTMAN_EMAIL }}"
-            --env-var "projetoQAAutomationPassword=${{ secrets.POSTMAN_PASSWORD }}"
+            collection run postman/collections/projeto-postman-advanced
+            --environment postman/environments/projeto-postman-advanced-env.environment.yaml
+            --env-var projetoQAAutomationEmail=${{ secrets.POSTMAN_EMAIL }}
+            --env-var projetoQAAutomationPassword=${{ secrets.POSTMAN_PASSWORD }}
