@@ -2,9 +2,13 @@ name: Testes de API com Postman CLI
 
 on:
   workflow_dispatch:
+
   push:
     branches:
       - main
+    paths:
+      - 'postman/**'
+      - '.github/workflows/**'
 
 jobs:
   testes-api:
@@ -20,5 +24,6 @@ jobs:
           command: >-
             collection run postman/collections/projeto-postman-advanced
             --environment postman/environments/projeto-postman-advanced-env.environment.yaml
-            --env-var projetoQAAutomationEmail=${{ secrets.POSTMAN_EMAIL }}
-            --env-var projetoQAAutomationPassword=${{ secrets.POSTMAN_PASSWORD }}
+            --env-var projetoQAAutomationBaseUrl=${{ vars.API_BASE_URL }}
+            --env-var projetoQAAutomationEmail=${{ secrets.API_TEST_EMAIL }}
+            --env-var projetoQAAutomationPassword=${{ secrets.API_TEST_PASSWORD }}
