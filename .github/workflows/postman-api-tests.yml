@@ -1,0 +1,24 @@
+name: Testes de API com Postman CLI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  testes-api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Executar testes com Postman CLI
+        uses: postmanlabs/postman-cli-action@v1
+        with:
+          command: >-
+            collection run "postman/collections/projeto-postman-advanced"
+            --environment "postman/environments/projeto-postman-advanced-env.environment.yaml"
+            --env-var "projetoQAAutomationEmail=${{ secrets.POSTMAN_EMAIL }}"
+            --env-var "projetoQAAutomationPassword=${{ secrets.POSTMAN_PASSWORD }}"
