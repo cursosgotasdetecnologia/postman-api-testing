@@ -19,13 +19,11 @@ auth:
     token: "{{projetoQAAutomationAccessToken}}"
 scripts:
   - type: afterResponse
-    code: "const resposta = pm.response.json(); const paginacao =
-      resposta.pagination; \r
+    code: "const resposta = pm.response.json(); const paginacao = resposta.pagination; \r
 
-      pm.test(\"Consulta de categorias é realizada com sucesso\", function () {
-      \r
+      pm.test(\"[DEMO] Consulta de categorias é realizada com sucesso\", function () { \r
 
-      \    pm.response.to.have.status(200); }); \r
+      \    pm.response.to.have.status(201); });//200 \r
 
       pm.test(\"Resposta apresenta uma lista de categorias\", function () { \r
 
@@ -33,8 +31,7 @@ scripts:
 
       \r
 
-      pm.test(\"Paginação de categorias apresenta a estrutura esperada\",
-      function () { \r
+      pm.test(\"Paginação de categorias apresenta a estrutura esperada\", function () { \r
 
       \    pm.expect(paginacao).to.be.an(\"object\"); \r
 
@@ -52,8 +49,7 @@ scripts:
 
       \    resposta.data.forEach(function (categoria) {\r
 
-      \    pm.expect(categoria).to.have.property(\"id\");
-      pm.expect(categoria.name).to.be.a(\"string\").and.not.empty; }); });"
+      \    pm.expect(categoria).to.have.property(\"id\"); pm.expect(categoria.name).to.be.a(\"string\").and.not.empty; }); });"
     language: text/javascript
 settings: {}
 examples: .resources/exibir-categorias-cadastradas-1.resources/examples

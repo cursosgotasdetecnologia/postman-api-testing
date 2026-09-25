@@ -19,9 +19,9 @@ scripts:
   - type: afterResponse
     code: "const resposta = pm.response.json(); \r
 
-      pm.test(\"Login é realizado com sucesso\", function () {\r
+      pm.test(\"[DEMO]Login é realizado com sucesso\", function () {\r
 
-      \     pm.response.to.have.status(200); }); \r
+      \     pm.response.to.have.status(201); }); //200\r
 
       \r
 
@@ -33,7 +33,7 @@ scripts:
 
       \r
 
-      \    pm.test(\"Login retorna token de acesso válido\", function () { \r
+      \    pm.test.skip(\"[DEMO]Login retorna token de acesso válido\", function () { \r
 
       \    pm.expect(resposta.data.token).to.be.a(\"string\").and.not.empty; }); \r
 

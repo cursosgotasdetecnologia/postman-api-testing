@@ -17,9 +17,9 @@ scripts:
 
       \r
 
-      pm.test(\"Resposta apresenta as propriedades esperadas\", function () { \r
+      pm.test(\"[DEMO]Resposta apresenta as propriedades esperadas\", function () { \r
 
-      \    pm.expect(resposta).to.have.property(\"data\"); \r
+      \    pm.expect(resposta).to.have.property(\"datas\"); //data\r
 
       \    pm.expect(resposta).to.have.property(\"pagination\"); \r
 
@@ -27,29 +27,25 @@ scripts:
 
       \r
 
-      pm.test(\"Fornecedor sem produtos retorna uma lista vazia\", function () {
-      \r
+      pm.test(\"Fornecedor sem produtos retorna uma lista vazia\", function () { \r
 
       \    pm.expect(resposta.data).to.be.an(\"array\").and.empty; }); \r
 
       \r
 
-      pm.test(\"Paginação apresenta valores coerentes para uma lista vazia\",
-      function () { \r
+      pm.test(\"[DEMO] Paginação apresenta valores coerentes para uma lista vazia\", function () { \r
 
-      \    pm.expect(resposta.pagination.total).to.eql(0); \r
+      \    pm.expect(resposta.pagination.total).to.eql(10); //0\r
 
       \    pm.expect(resposta.pagination.totalPages).to.eql(0); }); \r
 
       \r
 
-      pm.test(\"Fornecedor sem produtos retorna mensagem informativa\", function
-      () { \r
+      pm.test(\"Fornecedor sem produtos retorna mensagem informativa\", function () { \r
 
       \    pm.expect(resposta.mensagens).to.be.an(\"array\").and.not.empty; \r
 
-      \    pm.expect( resposta.mensagens[0].toLowerCase() ).to.include(\"nenhum
-      produto\"); });\r
+      \    pm.expect( resposta.mensagens[0].toLowerCase() ).to.include(\"nenhum produto\"); });\r
 
       \r
 

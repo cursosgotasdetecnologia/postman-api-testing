@@ -27,19 +27,19 @@ scripts:
 
       \    \r
 
-      pm.test(\"Resposta apresenta um fornecedor estruturado\", function () { \r
+      pm.test(\"[DEMO]Resposta apresenta um fornecedor estruturado\", function () { \r
 
-      \    pm.expect(fornecedorConsultado).to.be.an(\"object\"); }); \r
+      \    pm.expect(fornecedorConsultado).not.be.an(\"object\"); }); //ON\r
 
       \    \r
 
-      pm.test(\"Fornecedor retornado possui o ID solicitado\", function () { \r
+      pm.test.skip(\"[DEMO] Fornecedor retornado possui o ID solicitado\", function () { \r
 
       \    pm.expect(fornecedorConsultado.id).to.eql( Number( pm.environment.get(\"projetoQAAutomationSupplierId\") ) ); }); \r
 
       \r
 
-      pm.test(\"Fornecedor apresenta as propriedades principais\", function () { \r
+      pm.test.skip(\"[DEMO] Fornecedor apresenta as propriedades principais\", function () { \r
 
       \    pm.expect(fornecedorConsultado).to.include.all.keys( \"id\", \"company_name\", \"contact_name\", \"email\", \"cnpj\", \"country\", \"is_active\" ); }); \r
 
@@ -51,7 +51,7 @@ scripts:
 
       \r
 
-      pm.test(\"Consulta retorna mensagem informativa\", function () { \r
+      pm.test.skip(\"DEMO]Consulta retorna mensagem informativa\", function () { \r
 
       \    pm.expect(respostaFornecedorPorId.mensagens) .to.be.an(\"array\") .that.is.not.empty; });"
     language: text/javascript

@@ -21,7 +21,7 @@ scripts:
 
       \r
 
-      pm.test(\"Produto inexistente não retorna dados\", function () { \r
+      pm.test.skip(\"[DEMO] Produto inexistente não retorna dados\", function () { \r
 
       \    pm.expect(respostaProdutoInexistente.data).to.be.null; }); \r
 

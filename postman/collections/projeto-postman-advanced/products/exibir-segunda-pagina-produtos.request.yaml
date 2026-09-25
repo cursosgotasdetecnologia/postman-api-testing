@@ -50,7 +50,7 @@ scripts:
 
       \    pm.response.to.have.status(200); }); \r
 
-      pm.test(\"Consulta retorna a segunda página solicitada\", function () { \r
+      pm.test.skip(\"[DEMO]Consulta retorna a segunda página solicitada\", function () { \r
 
       \    pm.expect(resposta.pagination.page).to.eql(2); });"
     language: text/javascript

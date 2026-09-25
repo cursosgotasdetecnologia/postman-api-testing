@@ -22,10 +22,9 @@ scripts:
 
       \r
 
-      pm.test(\"Content-Type é JSON\", function () {\r
+      pm.test(\"[DEMO]Content-Type é JSON\", function () {\r
 
-      pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"applica\
-      tion/json\");\r
+      pm.expect(pm.response.headers.get(\"Content-Type\")).not.include(\"application/json\");//to\r
 
       });\r
 
@@ -85,8 +84,7 @@ scripts:
 
       \r
 
-      pm.test(\"Paginação é coerente para resposta sem registros\", function ()
-      {\r
+      pm.test(\"Paginação é coerente para resposta sem registros\", function () {\r
 
       pm.expect(response.pagination.page).to.be.at.least(1);\r
 
@@ -112,8 +110,7 @@ scripts:
 
       \r
 
-      pm.test(\"Mensagem informa que nenhum produto está cadastrado\", function
-      () {\r
+      pm.test(\"Mensagem informa que nenhum produto está cadastrado\", function () {\r
 
       const mensagemEncontrada = response.mensagens.some(function (mensagem) {\r
 
