@@ -20,9 +20,9 @@ scripts:
 
       \r
 
-      pm.test(\"[DEMO]Credenciais inválidas são rejeitadas\", function () { \r
+      pm.test(\"Credenciais inválidas são rejeitadas\", function () { \r
 
-      \    pm.response.to.have.status(404); }); //400\r
+      \    pm.response.to.have.status(400); }); \r
 
       \    \r
 
@@ -46,9 +46,9 @@ scripts:
 
       \r
 
-      pm.test(\"[DEMO]Login sem senha é rejeitado\", function () { \r
+      pm.test(\"Login sem senha é rejeitado\", function () { \r
 
-      \    pm.response.to.have.status(404); }); //400\r
+      \    pm.response.to.have.status(400); }); //400\r
 
       \r
 

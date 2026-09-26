@@ -29,7 +29,7 @@ scripts:
 
       pm.test(\"[DEMO]Resposta apresenta um fornecedor estruturado\", function () { \r
 
-      \    pm.expect(fornecedorConsultado).not.be.an(\"object\"); }); //ON\r
+      \    pm.expect(fornecedorConsultado).of.be.an(\"object\"); }); //on\r
 
       \    \r
 

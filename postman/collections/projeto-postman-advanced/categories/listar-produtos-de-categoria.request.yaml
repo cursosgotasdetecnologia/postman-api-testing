@@ -54,7 +54,7 @@ scripts:
 
       \r
 
-      pm.test(\"[DEMO]Produtos apresentam as propriedades principais\", function () {\r
+      pm.test(\"Produtos apresentam as propriedades principais\", function () {\r
 
       \    respostaProdutosCategoria.data.forEach(function (produto) {\r
 
@@ -62,7 +62,7 @@ scripts:
 
       \            \"id\",\r
 
-      \            \"names\",//name\r
+      \            \"name\",//name\r
 
       \            \"price\",\r
 
@@ -120,9 +120,9 @@ scripts:
 
       \r
 
-      pm.test(\"[DEMO]Paginação respeita os parâmetros solicitados\", function () {\r
+      pm.test(\"Paginação respeita os parâmetros solicitados\", function () {\r
 
-      \    pm.expect(respostaProdutosCategoria.pagination.page).to.eql(2);//1\r
+      \    pm.expect(respostaProdutosCategoria.pagination.page).to.eql(1);//1\r
 
       \    pm.expect(respostaProdutosCategoria.pagination.limit).to.eql(5);\r
 

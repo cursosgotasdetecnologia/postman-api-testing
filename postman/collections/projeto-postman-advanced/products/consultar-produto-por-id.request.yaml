@@ -41,9 +41,9 @@ scripts:
 
       \r
 
-      pm.test(\"[DEMO]Preço e estoque apresentam tipos válidos\", function () { \r
+      pm.test(\"Preço e estoque apresentam tipos válidos\", function () { \r
 
-      \    pm.expect(produtoConsultado.price).to.be.a(\"string\"); //number\r
+      \    pm.expect(produtoConsultado.price).to.be.a(\"number\"); //number\r
 
       \    pm.expect(produtoConsultado.price).to.be.at.least(0);\r
 

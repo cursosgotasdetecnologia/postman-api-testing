@@ -21,9 +21,9 @@ scripts:
   - type: afterResponse
     code: "const resposta = pm.response.json(); const paginacao = resposta.pagination; \r
 
-      pm.test(\"[DEMO] Consulta de categorias é realizada com sucesso\", function () { \r
+      pm.test(\"Consulta de categorias é realizada com sucesso\", function () { \r
 
-      \    pm.response.to.have.status(201); });//200 \r
+      \    pm.response.to.have.status(200); });//200 \r
 
       pm.test(\"Resposta apresenta uma lista de categorias\", function () { \r
 
