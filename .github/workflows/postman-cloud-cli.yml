@@ -1,0 +1,28 @@
+name: Testes com Postman Cloud
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testes-postman-cloud:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Instalar o Postman CLI
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+
+      - name: Autenticar no Postman CLI
+        run: postman login --with-api-key "${{ secrets.POSTMAN_API_KEY }}"
+
+      - name: Executar os testes de API
+        run: >-
+          postman collection run
+          "15307284-c20fd52b-1506-45b5-8326-06e1fb813027"
+          -e "15307284-823d7acf-7417-48ef-a562-5182ff25c8dc"
+          --env-var "projetoQAAutomationBaseUrl=${{ vars.API_BASE_URL }}"
+          --env-var "projetoQAAutomationEmail=${{ secrets.API_TEST_EMAIL }}"
+          --env-var "projetoQAAutomationPassword=${{ secrets.API_TEST_PASSWORD }}"
+
+
+  
