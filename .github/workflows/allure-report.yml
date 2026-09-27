@@ -1,0 +1,56 @@
+name: Relatório Allure dos testes de API
+
+on:
+  workflow_dispatch:
+
+jobs:
+  allure-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar a branch da demonstração [demo-allure]
+        uses: actions/checkout@v7
+        with:
+          ref: demo-allure
+
+      - name: Configurar o Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Configurar o Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Instalar as dependências
+        run: npm ci
+
+      - name: Executar os testes com Newman
+        id: newman
+        continue-on-error: true
+        run: |
+          npx newman run "newman/allure-demo/projeto-postman-advanced.postman_collection.json" \
+            -e "newman/allure-demo/projeto-postman-advanced-env.postman_environment.json" \
+            --env-var "projetoQAAutomationBaseUrl=${{ vars.API_BASE_URL }}" \
+            --env-var "projetoQAAutomationEmail=${{ secrets.API_TEST_EMAIL }}" \
+            --env-var "projetoQAAutomationPassword=${{ secrets.API_TEST_PASSWORD }}" \
+            --reporters cli,allure \
+            --reporter-allure-resultsDir "allure-results"
+
+      - name: Gerar o Allure Report
+        run: npx allure generate "allure-results" --clean -o "allure-report"
+
+      - name: Salvar o relatório como Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: allure-report-${{ github.run_number }}
+          path: allure-report  
+          retention-days: 7        
+
+      - name: Manter o resultado real dos testes
+        if: steps.newman.outcome == 'failure'
+        run: |
+          echo "A suíte apresentou falhas, mas o relatório foi preservado."
+          exit 1
