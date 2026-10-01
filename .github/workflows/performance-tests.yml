@@ -1,0 +1,57 @@
+name: Testes de Performance com Postman CLI
+
+on:
+  workflow_dispatch:
+    inputs:
+      virtual_users:
+        description: Quantidade de usuários virtuais
+        required: true
+        default: "10"
+
+      duration_minutes:
+        description: Duração do teste em minutos
+        required: true
+        default: "1"
+
+concurrency:
+  group: performance-api
+  cancel-in-progress: false
+
+jobs:
+  performance:
+    name: Executar teste de performance
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v5
+
+      - name: Instalar o Postman CLI
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/unix.sh" | sh
+
+      - name: Autenticar no Postman
+        run: postman login --with-api-key "${{ secrets.POSTMAN_API_KEY }}"
+
+      - name: Executar teste de performance
+        shell: bash
+        run: |
+          set -o pipefail
+
+          postman performance run \
+            "${{ vars.POSTMAN_PERFORMANCE_COLLECTION_ID }}" \
+            --environment "${{ vars.POSTMAN_ENVIRONMENT_ID }}" \
+            --vu-count "${{ inputs.virtual_users }}" \
+            --duration "${{ inputs.duration_minutes }}" \
+            --load-profile fixed \
+            --pass-if "less_than(p95, 1000)" \
+            2>&1 | tee resultado-performance-cli.txt
+
+      - name: Publicar a evidência
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencia-performance-${{ github.run_number }}
+          path: resultado-performance-cli.txt
+          if-no-files-found: warn
+          retention-days: 7
