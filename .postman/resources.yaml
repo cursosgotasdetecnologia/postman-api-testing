@@ -4,6 +4,7 @@ cloudResources:
   collections:
     ../postman/collections/Projeto QA Automation - Etapa 2: 15307284-5db2e029-c214-4e16-a26d-b460ac3937b8
     ../postman/collections/projeto-postman-advanced: 15307284-c20fd52b-1506-45b5-8326-06e1fb813027
+    ../postman/collections/projeto-postman-performance: 15307284-901fab22-e088-40b7-8a16-1cd680dbe3ce
   environments:
     ../postman/environments/Projeto QA Automation — Etapa 2.environment.yaml: 15307284-6524991f-3138-4d95-b235-a454e0a47c94
     ../postman/environments/projeto-postman-advanced-env.environment.yaml: 15307284-823d7acf-7417-48ef-a562-5182ff25c8dc

@@ -1,0 +1,41 @@
+$kind: http-request
+url: https://northwind-test-platform.vercel.app/api/v1/products/search
+method: GET
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjlhOThlZTM4LTE0ZGQtNDE4Zi1iNWVmLTQxNGMzOGFiZWEwMyIsImVtYWlsIjoiYWRtaW5AcWF0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc5MTIxNDIyMCwiZXhwIjoxNzkxODE5MDIwfQ.wfR2kSf7CCxjWir54RzTiMLw6nyNqO-p8FN-jLcC5kA
+queryParams:
+  - key: name
+    value: OR 1=1
+    disabled: true
+scripts:
+  - type: afterResponse
+    code: "const respostaInjection = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Achado: entrada maliciosa provoca erro interno\", function () {\r
+
+      \    pm.response.to.have.status(500);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Erro não expõe detalhes técnicos do banco\", function () {\r
+
+      \    const respostaCompleta = JSON.stringify(respostaInjection).toLowerCase();\r
+
+      \r
+
+      \    pm.expect(respostaCompleta).to.not.include(\"select\");\r
+
+      \    pm.expect(respostaCompleta).to.not.include(\"postgres\");\r
+
+      \    pm.expect(respostaCompleta).to.not.include(\"supabase\");\r
+
+      \    pm.expect(respostaCompleta).to.not.include(\"stack\");\r
+
+      });"
+    language: text/javascript
+order: 4000

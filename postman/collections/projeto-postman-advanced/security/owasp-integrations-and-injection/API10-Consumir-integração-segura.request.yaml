@@ -1,0 +1,54 @@
+$kind: http-request
+url: https://northwind-test-platform.vercel.app/api/v1/integrations/url-preview
+method: POST
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjlhOThlZTM4LTE0ZGQtNDE4Zi1iNWVmLTQxNGMzOGFiZWEwMyIsImVtYWlsIjoiYWRtaW5AcWF0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc5MTE2MTM5MiwiZXhwIjoxNzkxNzY2MTkyfQ.pYOgyI62goxIMSaB5Ymv7s9zDS86SkQqmPgTnlIZ31g
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "url": "https://northwind-test-platform.vercel.app/api/v1/health"
+      }
+scripts:
+  - type: afterResponse
+    code: "const respostaIntegracao = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Integração autorizada é consultada com sucesso\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta apresenta somente os dados necessários\", function () {\r
+
+      \    pm.expect(respostaIntegracao.data)\r
+
+      \        .to.have.all.keys(\"status\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Status recebido possui o valor esperado\", function () {\r
+
+      \    pm.expect(respostaIntegracao.data.status).to.eql(\"ok\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta apresenta mensagem controlada\", function () {\r
+
+      \    pm.expect(respostaIntegracao.mensagens)\r
+
+      \        .to.include(\"Integração consultada com segurança.\");\r
+
+      });"
+    language: text/javascript
+order: 3000

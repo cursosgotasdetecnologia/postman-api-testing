@@ -6,11 +6,9 @@ headers:
 queryParams:
   - key: page
     value: "1"
-    disabled: false
     description: Número da página
   - key: limit
     value: "5"
-    disabled: false
     description: Quantidade de itens por página
 auth:
   type: bearer
@@ -30,7 +28,7 @@ scripts:
 
       \r
 
-      pm.test(\"Consulta da categoria utiliza formato JSON\", function () {\r
+      pm.test.skip(\"[DEMO] Consulta da categoria utiliza formato JSON\", function () {\r
 
       \    pm.expect(\r
 
@@ -42,7 +40,7 @@ scripts:
 
       \r
 
-      pm.test(\"Resposta apresenta uma lista de produtos\", function () {\r
+      pm.test.skip(\"[DEMO]Resposta apresenta uma lista de produtos\", function () {\r
 
       \    pm.expect(respostaProdutosCategoria.data)\r
 
@@ -62,7 +60,7 @@ scripts:
 
       \            \"id\",\r
 
-      \            \"name\",\r
+      \            \"name\",//name\r
 
       \            \"price\",\r
 
@@ -122,7 +120,7 @@ scripts:
 
       pm.test(\"Paginação respeita os parâmetros solicitados\", function () {\r
 
-      \    pm.expect(respostaProdutosCategoria.pagination.page).to.eql(1);\r
+      \    pm.expect(respostaProdutosCategoria.pagination.page).to.eql(1);//1\r
 
       \    pm.expect(respostaProdutosCategoria.pagination.limit).to.eql(5);\r
 
@@ -144,6 +142,4 @@ scripts:
 
       });"
     language: text/javascript
-settings: {}
-examples: .resources/listar-produtos-de-categoria.resources/examples
 order: 2000

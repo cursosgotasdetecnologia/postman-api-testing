@@ -1,0 +1,94 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "{{projetoQAAutomationEmail}}",
+      "password": "{{projetoQAAutomationPassword}}"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      const usuario = resposta.data.user;\r
+
+      const token = resposta.data.token;\r
+
+      \r
+
+      pm.test(\"Login é realizado com sucesso\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Token de acesso é retornado\", function () {\r
+
+      \    pm.expect(token).to.be.a(\"string\").and.not.empty;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Token apresenta a estrutura de um JWT\", function () {\r
+
+      \    pm.expect(token.split(\".\")).to.have.lengthOf(3);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Usuário autenticado apresenta os dados esperados\", function () {\r
+
+      \    pm.expect(usuario).to.include.all.keys(\r
+
+      \        \"id\",\r
+
+      \        \"email\",\r
+
+      \        \"full_name\",\r
+
+      \        \"role\"\r
+
+      \    );\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta não expõe credenciais do usuário\", function () {\r
+
+      \    pm.expect(usuario).not.to.have.property(\"password\");\r
+
+      \    pm.expect(usuario).not.to.have.property(\"password_hash\");\r
+
+      \    pm.expect(usuario).not.to.have.property(\"passwordHash\");\r
+
+      \    pm.expect(usuario).not.to.have.property(\"salt\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta não expõe informações internas\", function () {\r
+
+      \    pm.expect(usuario).not.to.have.property(\"resetToken\");\r
+
+      \    pm.expect(usuario).not.to.have.property(\"apiKey\");\r
+
+      \    pm.expect(usuario).not.to.have.property(\"internalNotes\");\r
+
+      });"
+    language: text/javascript
+order: 1000

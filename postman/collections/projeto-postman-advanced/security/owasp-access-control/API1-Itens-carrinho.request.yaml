@@ -1,0 +1,7 @@
+$kind: http-request
+url: https://northwind-test-platform.vercel.app/api/v1/cart
+method: GET
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjMwZDk0MWE5LTA5ZmYtNGE5OC1hOWY3LWMxYzBhNjY4OTIxOSIsImVtYWlsIjoidXN1YXJpbzAxQHFhdGVzdC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3OTExMzMyNzQsImV4cCI6MTc5MTczODA3NH0.IaiXKn12hAYhKu9nYNZVrMcE5hGLbWHnbp-3hN3Alxo
+order: 2000

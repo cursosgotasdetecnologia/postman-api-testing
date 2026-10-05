@@ -1,0 +1,46 @@
+$kind: http-request
+url: https://northwind-test-platform.vercel.app/api/v1/categories?page=1&limit=1000
+method: GET
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjlhOThlZTM4LTE0ZGQtNDE4Zi1iNWVmLTQxNGMzOGFiZWEwMyIsImVtYWlsIjoiYWRtaW5AcWF0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc5MTE0MjExOSwiZXhwIjoxNzkxNzQ2OTE5fQ.qfyJSu5z7wmt2mOw7ssd5YWi1Xhy1ZhoCLJe7VXoJHw
+queryParams:
+  page: "1"
+  limit: "1000"
+scripts:
+  - type: afterResponse
+    code: "const respostaAPI4 = pm.response.json();\r
+
+      pm.test(\"Status code is 400\", function () {\r
+
+      \    pm.response.to.have.status(400);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Paginação acima do limite é rejeitada\", function () {\r
+
+      \    pm.response.to.have.status(400);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Requisição rejeitada não retorna dados\", function () {\r
+
+      \    pm.expect(respostaAPI4.data).to.be.null;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Mensagem informa o limite máximo permitido\", function () {\r
+
+      \    pm.expect(respostaAPI4.mensagens)\r
+
+      \        .to.include(\"O parâmetro limit não pode ser maior que 100.\");\r
+
+      });\r\n"
+    language: text/javascript
+order: 2000

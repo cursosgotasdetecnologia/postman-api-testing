@@ -48,7 +48,7 @@ scripts:
 
       pm.test(\"Login sem senha é rejeitado\", function () { \r
 
-      \    pm.response.to.have.status(400); }); \r
+      \    pm.response.to.have.status(400); }); //400\r
 
       \r
 
@@ -74,6 +74,4 @@ scripts:
 
       \    pm.expect( respostaLoginSemSenha.mensagens.join(\" \") ).to.include(\"Email e senha são obrigatórios\"); });"
     language: text/javascript
-settings: {}
-examples: .resources/rejeitar-login-sem-senha.resources/examples
-order: 2042
+order: 2000

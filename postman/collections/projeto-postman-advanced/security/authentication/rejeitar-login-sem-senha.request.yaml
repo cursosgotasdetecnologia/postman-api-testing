@@ -1,0 +1,78 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "{{projetoQAAutomationEmail}}"
+      //"password": "{{projetoQAAutomationPassword}}"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Login sem senha retorna HTTP 400 Bad Request\", function () {\r
+
+      \    pm.response.to.have.status(400);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta utiliza formato JSON\", function () {\r
+
+      \    pm.expect(\r
+
+      \        pm.response.headers.get(\"Content-Type\")\r
+
+      \    ).to.include(\"application/json\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta não retorna dados de autenticação\", function () {\r
+
+      \    pm.expect(resposta.data).to.be.null;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta não retorna token de acesso\", function () {\r
+
+      \    pm.expect(resposta.data?.token).to.be.undefined;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta apresenta uma lista de mensagens\", function () {\r
+
+      \    pm.expect(resposta.mensagens)\r
+
+      \        .to.be.an(\"array\")\r
+
+      \        .that.is.not.empty;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Mensagem informa que email e senha são obrigatórios\", function () {\r
+
+      \    pm.expect(resposta.mensagens)\r
+
+      \        .to.include(\"Email e senha são obrigatórios\");\r
+
+      });"
+    language: text/javascript
+order: 1000

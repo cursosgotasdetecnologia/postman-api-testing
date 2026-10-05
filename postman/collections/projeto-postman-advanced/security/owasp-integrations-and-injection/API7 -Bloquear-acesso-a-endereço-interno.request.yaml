@@ -1,0 +1,47 @@
+$kind: http-request
+url: https://northwind-test-platform.vercel.app/api/v1/integrations/url-preview
+method: POST
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjlhOThlZTM4LTE0ZGQtNDE4Zi1iNWVmLTQxNGMzOGFiZWEwMyIsImVtYWlsIjoiYWRtaW5AcWF0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc5MTE2MTM5MiwiZXhwIjoxNzkxNzY2MTkyfQ.pYOgyI62goxIMSaB5Ymv7s9zDS86SkQqmPgTnlIZ31g
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      //"url": "https://northwind-test-platform.vercel.app/api/v1/health"
+      //"url": "http://localhost:3000169.254.169.254/latest/meta-data/"
+      "url": "http://localhost:3000"
+
+    }
+scripts:
+  - type: afterResponse
+    code: "const respostaSsrf = pm.response.json();\r
+
+      \r
+
+      pm.test(\"URL interna é rejeitada\", function () {\r
+
+      \    pm.response.to.have.status(400);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Bloqueio não retorna dados internos\", function () {\r
+
+      \    pm.expect(respostaSsrf.data).to.be.null;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta informa que a URL não é permitida\", function () {\r
+
+      \    pm.expect(respostaSsrf.mensagens)\r
+
+      \        .to.include(\"URL de integração não permitida.\");\r
+
+      });"
+    language: text/javascript
+order: 2000

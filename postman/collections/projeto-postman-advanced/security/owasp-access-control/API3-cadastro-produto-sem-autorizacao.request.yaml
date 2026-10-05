@@ -1,0 +1,65 @@
+$kind: http-request
+url: https://northwind-test-platform.vercel.app/api/v1/products
+method: POST
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVlNjcxY2YyLWJiNjEtNDFkNC1hMzY1LTk5M2VmNDg5NDBjMiIsImVtYWlsIjoidXN1YXJpbzAyQHFhdGVzdC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3OTExMzUxNTUsImV4cCI6MTc5MTczOTk1NX0.P_fW4oUou7XZzEAdMyCAFNRtarKgxG_VCCOY63qHxt0
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "ProdutoX",
+      "price": 549.99,
+      "stock_quantity": 37,
+      "sku": "VFT-6767",  
+      "category_id": 590,
+      "supplier_id": 1000
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessTokenUsuario02}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Criação de produto é negada para usuário sem permissão de administrador\", function () {\r
+
+      \    pm.expect(resposta.mensagens).to.eql([\r
+
+      \        \"Acesso negado. Apenas administradores podem criar produtos.\"\r
+
+      \    ]);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta não retorna dados do produto quando o acesso é negado\", function () {\r
+
+      \    pm.expect(resposta.data).to.be.null;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta não expõe detalhes internos do erro\", function () {\r
+
+      \    pm.expect(resposta).not.to.have.property(\"stack\");\r
+
+      \    pm.expect(resposta).not.to.have.property(\"stackTrace\");\r
+
+      \    pm.expect(resposta).not.to.have.property(\"exception\");\r
+
+      });\r
+
+      pm.test(\"Status code is 403\", function () {\r
+
+      \    pm.response.to.have.status(403);\r
+
+      });"
+    language: text/javascript
+order: 4000

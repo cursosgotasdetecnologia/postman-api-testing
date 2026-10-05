@@ -1,4 +1,6 @@
 $kind: collection
 auth:
-  type: bearer
-order: 4122545971887501
+  - id: cccc3a4f-69bd-43b4-a280-d5f7f5a6089d
+    type: bearer
+    name: bearer auth
+order: 2000

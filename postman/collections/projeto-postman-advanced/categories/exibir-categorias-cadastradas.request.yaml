@@ -1,5 +1,4 @@
 $kind: http-request
-name: exibir-categorias-cadastradas
 url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories?page=1&limit=5"
 method: GET
 headers:
@@ -7,11 +6,9 @@ headers:
 queryParams:
   - key: page
     value: "1"
-    disabled: false
     description: Número da página
   - key: limit
     value: "5"
-    disabled: false
     description: Quantidade de itens por página
 auth:
   type: bearer
@@ -19,13 +16,11 @@ auth:
     token: "{{projetoQAAutomationAccessToken}}"
 scripts:
   - type: afterResponse
-    code: "const resposta = pm.response.json(); const paginacao =
-      resposta.pagination; \r
+    code: "const resposta = pm.response.json(); const paginacao = resposta.pagination; \r
 
-      pm.test(\"Consulta de categorias é realizada com sucesso\", function () {
-      \r
+      pm.test(\"Consulta de categorias é realizada com sucesso\", function () { \r
 
-      \    pm.response.to.have.status(200); }); \r
+      \    pm.response.to.have.status(200); });//200 \r
 
       pm.test(\"Resposta apresenta uma lista de categorias\", function () { \r
 
@@ -33,8 +28,7 @@ scripts:
 
       \r
 
-      pm.test(\"Paginação de categorias apresenta a estrutura esperada\",
-      function () { \r
+      pm.test(\"Paginação de categorias apresenta a estrutura esperada\", function () { \r
 
       \    pm.expect(paginacao).to.be.an(\"object\"); \r
 
@@ -52,9 +46,6 @@ scripts:
 
       \    resposta.data.forEach(function (categoria) {\r
 
-      \    pm.expect(categoria).to.have.property(\"id\");
-      pm.expect(categoria.name).to.be.a(\"string\").and.not.empty; }); });"
+      \    pm.expect(categoria).to.have.property(\"id\"); pm.expect(categoria.name).to.be.a(\"string\").and.not.empty; }); });"
     language: text/javascript
-settings: {}
-examples: .resources/exibir-categorias-cadastradas-1.resources/examples
-order: 1819
+order: 1000

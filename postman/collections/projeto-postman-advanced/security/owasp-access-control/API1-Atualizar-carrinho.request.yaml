@@ -1,0 +1,32 @@
+$kind: http-request
+url: https://northwind-test-platform.vercel.app/api/v1/cart/338
+method: PATCH
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjMwZDk0MWE5LTA5ZmYtNGE5OC1hOWY3LWMxYzBhNjY4OTIxOSIsImVtYWlsIjoidXN1YXJpbzAxQHFhdGVzdC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3OTExMzMyNzQsImV4cCI6MTc5MTczODA3NH0.IaiXKn12hAYhKu9nYNZVrMcE5hGLbWHnbp-3hN3Alxo
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "quantity": 150
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessTokenUsuario02}}"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Negar acesso com token do consumidor alterado para 02\", function () {\r
+
+      \    const resposta = pm.response.json();\r
+
+      \r
+
+      \    pm.expect(resposta.data).to.be.null;\r
+
+      \    pm.expect(resposta.mensagens).to.eql([\"Acesso negado.\"]);\r
+
+      });"
+    language: text/javascript
+order: 3000

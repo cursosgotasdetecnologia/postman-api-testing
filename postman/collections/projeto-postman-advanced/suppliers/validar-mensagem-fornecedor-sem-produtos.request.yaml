@@ -27,15 +27,13 @@ scripts:
 
       \r
 
-      pm.test(\"Fornecedor sem produtos retorna uma lista vazia\", function () {
-      \r
+      pm.test(\"Fornecedor sem produtos retorna uma lista vazia\", function () { \r
 
       \    pm.expect(resposta.data).to.be.an(\"array\").and.empty; }); \r
 
       \r
 
-      pm.test(\"Paginação apresenta valores coerentes para uma lista vazia\",
-      function () { \r
+      pm.test(\"Paginação apresenta valores coerentes para uma lista vazia\", function () { \r
 
       \    pm.expect(resposta.pagination.total).to.eql(0); \r
 
@@ -43,16 +41,44 @@ scripts:
 
       \r
 
-      pm.test(\"Fornecedor sem produtos retorna mensagem informativa\", function
-      () { \r
+      pm.test(\"Fornecedor sem produtos retorna mensagem informativa\", function () { \r
 
       \    pm.expect(resposta.mensagens).to.be.an(\"array\").and.not.empty; \r
 
-      \    pm.expect( resposta.mensagens[0].toLowerCase() ).to.include(\"nenhum
-      produto\"); });\r
+      \    pm.expect( resposta.mensagens[0].toLowerCase() ).to.include(\"nenhum produto\"); });\r
 
       \r
 
-      \    "
+      \ pm.test(\"[DEMO] Status HTTP esperado para validação controlada\", function () {\r
+
+      \    pm.expect(pm.response.code).to.eql(201);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"[DEMO] Tempo de resposta esperado para validação controlada\", function () {\r
+
+      \    pm.expect(pm.response.responseTime).to.be.below(1);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"[DEMO] Header demonstrativo deve estar presente\", function () {\r
+
+      \    pm.expect(pm.response.headers.has(\"X-Demo-Test\")).to.be.true;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"[DEMO] Resposta deve apresentar propriedade demonstrativa\", function () {\r
+
+      \    const respostaDemo = pm.response.json();\r
+
+      \    pm.expect(respostaDemo).to.have.property(\"propriedade_demo\");\r
+
+      });   "
     language: text/javascript
 order: 3000

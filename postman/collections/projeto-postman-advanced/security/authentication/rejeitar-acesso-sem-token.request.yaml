@@ -1,0 +1,47 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories?page=1&limit=5"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  - key: page
+    value: "1"
+    description: Número da página
+  - key: limit
+    value: "5"
+    description: Quantidade de itens por página
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: "const respostaSemToken = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Acesso sem token retorna HTTP 401\", function () {\r
+
+      \    pm.response.to.have.status(401);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Acesso sem token não retorna os dados protegidos\", function () {\r
+
+      \    pm.expect(respostaSemToken.data).to.be.null;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta apresenta mensagem de autenticação\", function () {\r
+
+      \    pm.expect(respostaSemToken.mensagens)\r
+
+      \        .to.be.an(\"array\")\r
+
+      \        .that.is.not.empty;\r
+
+      });"
+    language: text/javascript
+order: 2000

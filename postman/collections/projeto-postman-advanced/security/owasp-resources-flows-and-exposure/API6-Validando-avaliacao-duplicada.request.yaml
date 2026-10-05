@@ -1,0 +1,61 @@
+$kind: http-request
+url: https://northwind-test-platform.vercel.app/api/v1/reviews
+method: POST
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjlhOThlZTM4LTE0ZGQtNDE4Zi1iNWVmLTQxNGMzOGFiZWEwMyIsImVtYWlsIjoiYWRtaW5AcWF0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc5MTE0MjExOSwiZXhwIjoxNzkxNzQ2OTE5fQ.qfyJSu5z7wmt2mOw7ssd5YWi1Xhy1ZhoCLJe7VXoJHw
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "product_id": 275,
+      "rating": 5,
+      "title": "Produto excelente!",
+      "comment": "Chegou antes do prazo, qualidade top!"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessTokenUsuario01}}"
+scripts:
+  - type: afterResponse
+    code: "const respostaAPI6 = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Avaliação duplicada é bloqueada\", function () {\r
+
+      \    pm.response.to.have.status(409);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Bloqueio não retorna uma nova avaliação\", function () {\r
+
+      \    pm.expect(respostaAPI6.data).to.be.null;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Mensagem informa que o produto já foi avaliado\", function () {\r
+
+      \    pm.expect(respostaAPI6.mensagens)\r
+
+      \        .to.deep.equal([\r
+
+      \            \"Você já avaliou este produto.\"\r
+
+      \        ]);\r
+
+      });\r
+
+      pm.test(\"Status code is 409\", function () {\r
+
+      \    pm.response.to.have.status(409);\r
+
+      });"
+    language: text/javascript
+order: 3000

@@ -1,0 +1,65 @@
+$kind: http-request
+url: https://northwind-test-platform.vercel.app/api/v1/auth/register
+method: POST
+headers:
+  accept: "*/*"
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "full_name": "Mariassss Silva Santos",
+      "email": "mariasss5.silva@exemplo.com.br",
+      "password": "SenhaForte@2024",
+      "confirmPassword": "SenhaForte@2024",
+      "role": "admin"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessTokenUsuario01}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Cadastro rejeita o envio dos campos protegidos role e is_active\", function () {\r
+
+      \    pm.expect(resposta.mensagens).to.eql([\r
+
+      \        \"role e is_active não podem ser definidos no cadastro.\"\r
+
+      \    ]);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta não retorna dados do usuário ao rejeitar campos protegidos\", function () {\r
+
+      \    pm.expect(resposta.data).to.be.null;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta não expõe detalhes internos do erro\", function () {\r
+
+      \    pm.expect(resposta).not.to.have.property(\"stack\");\r
+
+      \    pm.expect(resposta).not.to.have.property(\"stackTrace\");\r
+
+      \    pm.expect(resposta).not.to.have.property(\"exception\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Status code is 400\", function () {\r
+
+      \    pm.response.to.have.status(400);\r
+
+      });"
+    language: text/javascript
+order: 5000

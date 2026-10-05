@@ -1,0 +1,81 @@
+$kind: http-request
+url: https://northwind-test-platform.vercel.app/api/v1/products/simulate-error
+method: GET
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjlhOThlZTM4LTE0ZGQtNDE4Zi1iNWVmLTQxNGMzOGFiZWEwMyIsImVtYWlsIjoiYWRtaW5AcWF0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc5MTE0MjExOSwiZXhwIjoxNzkxNzQ2OTE5fQ.qfyJSu5z7wmt2mOw7ssd5YWi1Xhy1ZhoCLJe7VXoJHw
+scripts:
+  - type: afterResponse
+    code: "const respostaAPI8 = pm.response.json();\r
+
+      const conteudoAPI8 = JSON.stringify(respostaAPI8).toLowerCase();\r
+
+      \r
+
+      pm.test(\"Erro interno simulado retorna status 500\", function () {\r
+
+      \    pm.response.to.have.status(500);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Erro interno não retorna dados\", function () {\r
+
+      \    pm.expect(respostaAPI8.data).to.be.null;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Erro apresenta uma mensagem controlada\", function () {\r
+
+      \    pm.expect(respostaAPI8.mensagens)\r
+
+      \        .to.be.an(\"array\")\r
+
+      \        .that.is.not.empty;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta não expõe informações internas sensíveis\", function () {\r
+
+      \    const termosSensiveis = [\r
+
+      \        \"stacktrace\",\r
+
+      \        \"exception\",\r
+
+      \        \"select *\",\r
+
+      \        \"insert into\",\r
+
+      \        \"supabase\",\r
+
+      \        \"service_role\",\r
+
+      \        \"jwt_secret\",\r
+
+      \        \"database_url\",\r
+
+      \        \"password\"\r
+
+      \    ];\r
+
+      \r
+
+      \    const termosEncontrados = termosSensiveis.filter(function (termo) {\r
+
+      \        return conteudoAPI8.includes(termo);\r
+
+      \    });\r
+
+      \r
+
+      \    pm.expect(termosEncontrados).to.be.empty;\r
+
+      });"
+    language: text/javascript
+order: 4000

@@ -1,0 +1,31 @@
+$kind: http-request
+url: https://northwind-test-platform.vercel.app/api/v1/products/simulate-error
+method: GET
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjlhOThlZTM4LTE0ZGQtNDE4Zi1iNWVmLTQxNGMzOGFiZWEwMyIsImVtYWlsIjoiYWRtaW5AcWF0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc5MTE2MTM5MiwiZXhwIjoxNzkxNzY2MTkyfQ.pYOgyI62goxIMSaB5Ymv7s9zDS86SkQqmPgTnlIZ31g
+scripts:
+  - type: afterResponse
+    code: "const respostaInventario = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Achado: rota de simulação está acessível\", function () {\r
+
+      \    pm.response.to.have.status(500);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta confirma a finalidade de simulação\", function () {\r
+
+      \    pm.expect(\r
+
+      \        respostaInventario.mensagens.join(\" \").toLowerCase()\r
+
+      \    ).to.include(\"simulado\");\r
+
+      });"
+    language: text/javascript
+order: 1000

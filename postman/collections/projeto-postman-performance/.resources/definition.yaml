@@ -1,0 +1,9 @@
+$kind: collection
+scripts:
+  - type: http:afterResponse
+    code: "pm.test(\"Tempo de resposta deve ser inferior a 15 segundos\", function () {\r
+
+      \    pm.expect(pm.response.responseTime).to.be.below(10000);\r
+
+      });"
+    language: text/javascript

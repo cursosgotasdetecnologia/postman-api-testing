@@ -1,0 +1,51 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories?page=1&limit=5"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  - key: page
+    value: "1"
+    description: Número da página
+  - key: limit
+    value: "5"
+    description: Quantidade de itens por página
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json(); const paginacao = resposta.pagination; \r
+
+      pm.test(\"Consulta de categorias é realizada com sucesso\", function () { \r
+
+      \    pm.response.to.have.status(200); });//200 \r
+
+      pm.test(\"Resposta apresenta uma lista de categorias\", function () { \r
+
+      \    pm.expect(resposta.data).to.be.an(\"array\"); }); \r
+
+      \r
+
+      pm.test(\"Paginação de categorias apresenta a estrutura esperada\", function () { \r
+
+      \    pm.expect(paginacao).to.be.an(\"object\"); \r
+
+      \    pm.expect(paginacao.currentPage).to.be.a(\"number\"); \r
+
+      \    pm.expect(paginacao.totalPages).to.be.a(\"number\"); \r
+
+      \    pm.expect(paginacao.totalItems).to.be.a(\"number\"); \r
+
+      \    pm.expect(paginacao.itemsPerPage).to.be.a(\"number\"); }); \r
+
+      \    \r
+
+      pm.test(\"Categorias apresentam informações principais\", function () { \r
+
+      \    resposta.data.forEach(function (categoria) {\r
+
+      \    pm.expect(categoria).to.have.property(\"id\"); pm.expect(categoria.name).to.be.a(\"string\").and.not.empty; }); });"
+    language: text/javascript
+order: 3000

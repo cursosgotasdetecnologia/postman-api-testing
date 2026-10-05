@@ -1,0 +1,49 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/categories?page=1&limit=5"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  - key: page
+    value: "1"
+    description: Número da página
+  - key: limit
+    value: "5"
+    description: Quantidade de itens por página
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjlhOThlZTM4LTE0ZGQtNDE4Zi1iNWVmLTQxNGMzOGFiZWEwMyIsImVtYWlsIjoiYWRtaW5AcWF0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc5MTA1NzA5NSwiZXhwIjoxNzkxNjYxODk1fQ.yTcOYwdzrJBOhK2P4cLXrUxtcWSjQX6sZ2q2n_zvKeT
+scripts:
+  - type: afterResponse
+    code: "const respostaTokenInvalido = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Token inválido retorna HTTP 401\", function () {\r
+
+      \    pm.response.to.have.status(401);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Token inválido não libera os dados protegidos\", function () {\r
+
+      \    pm.expect(respostaTokenInvalido.data).to.be.null;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Resposta apresenta mensagem de token adulterado\", function () {\r
+
+      \    pm.expect(respostaTokenInvalido.mensagens)\r
+
+      \        .to.be.an(\"array\")\r
+
+      \        .that.is.not.empty;\r
+
+      });"
+    language: text/javascript
+order: 3000
