@@ -1,0 +1,26 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/{{projetoQAAutomationProductId}}"
+method: GET
+headers:
+  accept: "*/*"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Produto excluído não é encontrado\", function () {\r
+
+      \    pm.response.to.have.status(404);\r
+
+      \    pm.expect(resposta.data).to.eql(null);\r
+
+      \    pm.expect(resposta.mensagens[0]).to.include(\"não encontrado\");\r
+
+      });"
+    language: text/javascript
+order: 8000

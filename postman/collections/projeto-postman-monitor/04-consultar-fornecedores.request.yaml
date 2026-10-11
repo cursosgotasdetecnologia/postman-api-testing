@@ -1,0 +1,101 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/suppliers"
+method: GET
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjlhOThlZTM4LTE0ZGQtNDE4Zi1iNWVmLTQxNGMzOGFiZWEwMyIsImVtYWlsIjoiYWRtaW5AcWF0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc5MTMwMTMxNywiZXhwIjoxNzkxOTA2MTE3fQ.BIER0N_f-RJA-A12mnXRV_23Bq27pp0ObsPFQWzkOrU
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      const primeiroFornecedor = resposta.data[0];\r
+
+      \r
+
+      pm.test(\"Recurso de fornecedores está disponível\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Consulta retorna fornecedores cadastrados\", function () {\r
+
+      \    pm.expect(resposta.data)\r
+
+      \        .to.be.an(\"array\")\r
+
+      \        .that.is.not.empty;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Primeiro fornecedor possui os dados essenciais\", function () {\r
+
+      \    pm.expect(primeiroFornecedor).to.include.all.keys(\r
+
+      \        \"id\",\r
+
+      \        \"company_name\",\r
+
+      \        \"contact_name\",\r
+
+      \        \"email\",\r
+
+      \        \"cnpj\",\r
+
+      \        \"country\",\r
+
+      \        \"is_active\"\r
+
+      \    );\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Primeiro fornecedor possui valores válidos\", function () {\r
+
+      \    pm.expect(primeiroFornecedor.id).to.be.a(\"number\");\r
+
+      \r
+
+      \    pm.expect(primeiroFornecedor.company_name)\r
+
+      \        .to.be.a(\"string\")\r
+
+      \        .and.not.empty;\r
+
+      \r
+
+      \    pm.expect(primeiroFornecedor.email)\r
+
+      \        .to.be.a(\"string\")\r
+
+      \        .and.not.empty;\r
+
+      \r
+
+      \    pm.expect(primeiroFornecedor.is_active)\r
+
+      \        .to.be.a(\"boolean\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Consulta apresenta mensagem de sucesso\", function () {\r
+
+      \    pm.expect(resposta.mensagens)\r
+
+      \        .to.include(\"Fornecedores carregados com sucesso!\");\r
+
+      });"
+    language: text/javascript
+order: 4000

@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/{{projetoQAAutomationProductId}}"
+method: DELETE
+headers:
+  accept: "*/*"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Produto excluído com sucesso\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      \    pm.expect(resposta.mensagens).to.include(\"Produto excluído com sucesso!\");\r
+
+      });"
+    language: text/javascript
+order: 7000

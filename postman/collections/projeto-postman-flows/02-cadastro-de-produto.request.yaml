@@ -1,0 +1,45 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products"
+method: POST
+headers:
+  accept: "*/*"
+  Content-Type: application/json
+body:
+  type: json
+  content: |+
+    {
+       "name": "{{$randomProductName}}",
+      "price": 1000,
+      "stock_quantity": 10,
+    "sku": "PDD-{{$randomUUID}}",
+      "category_id": 1561,
+      "supplier_id": 3045
+    }
+
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      const sucesso = pm.response.code = 201;\r
+
+      \r
+
+      pm.test(\"Produto criado com ID e estoque 10\", function () {\r
+
+      \    pm.expect(sucesso).to.eql(201);\r
+
+      \    pm.expect(resposta.data.id).to.be.a(\"number\");\r
+
+      \    pm.expect(resposta.data.stock_quantity).to.eql(10);\r
+
+      });\r
+
+      \r
+
+      pm.environment.set(\"projetoQAAutomationProductId\",resposta.data.id);\r\n"
+    language: text/javascript
+order: 2000

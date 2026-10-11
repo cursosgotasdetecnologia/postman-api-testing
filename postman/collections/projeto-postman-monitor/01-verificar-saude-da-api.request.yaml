@@ -1,0 +1,60 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/health"
+method: GET
+headers:
+  accept: "*/*"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      \r
+
+      pm.test(\"API está disponível\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"API informa status saudável\", function () {\r
+
+      \    pm.expect(resposta.data.status).to.eql(\"ok\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Banco de dados está conectado\", function () {\r
+
+      \    pm.expect(resposta.data.services.database.status)\r
+
+      \        .to.eql(\"connected\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Autenticação está operacional\", function () {\r
+
+      \    pm.expect(resposta.data.services.auth.status)\r
+
+      \        .to.eql(\"operational\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Supabase está ativo\", function () {\r
+
+      \    pm.expect(resposta.mensagens)\r
+
+      \        .to.include(\"Supabase ativo\");\r
+
+      });"
+    language: text/javascript
+order: 1000

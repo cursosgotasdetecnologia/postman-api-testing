@@ -1,0 +1,267 @@
+{
+  "version": 1,
+  "name": "fluxo-gerenciamento-produto",
+  "description": "",
+  "flow": {
+    "nodes": {
+      "nxEZoD4f": {
+        "type": "ev/endpoint@3",
+        "pos": {
+          "x": 0,
+          "y": 219
+        },
+        "config": {
+          "inputs": [],
+          "data": "",
+          "language": "json",
+          "allowAnyType": false
+        },
+        "ui": {
+          "data": {
+            "triggerType": "ev/endpoint@3"
+          },
+          "namedInputsExpanded": true
+        }
+      },
+      "xQKohfJC": {
+        "type": "task/http-request@2",
+        "pos": {
+          "x": 302,
+          "y": 0
+        },
+        "config": {
+          "element": {
+            "name": "01-login-no-sistema",
+            "method": "POST",
+            "path": "postman/collections/projeto-postman-flows/01-login-no-sistema.request.yaml"
+          },
+          "environment": "postman/environments/projeto-postman-advanced-env.environment.yaml",
+          "parseBody": "auto",
+          "requestVariables": [
+            {
+              "id": "Vi868X6s",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationBaseUrl"
+            },
+            {
+              "id": "AXNlgpkE",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationEmail"
+            },
+            {
+              "id": "zHlEzh7v",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationPassword",
+              "latch": true
+            }
+          ],
+          "scriptsModifyEnvVars": true,
+          "ignoreTestResults": false,
+          "trackGlobalEnvironment": false,
+          "requestVariables__expanded": true
+        },
+        "ui": {
+          "data": {},
+          "namedInputsExpanded": true,
+          "requestVariablesExpanded": true
+        }
+      },
+      "BST_jT6l": {
+        "type": "task/http-request@2",
+        "pos": {
+          "x": 688,
+          "y": -16
+        },
+        "config": {
+          "element": {
+            "name": "02-cadastro-de-produto",
+            "method": "POST",
+            "path": "postman/collections/projeto-postman-flows/02-cadastro-de-produto.request.yaml"
+          },
+          "environment": "postman/environments/projeto-postman-advanced-env.environment.yaml",
+          "parseBody": "auto",
+          "requestVariables": [
+            {
+              "id": "qq3maiPS",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationBaseUrl"
+            },
+            {
+              "id": "Ifaz4rkQ",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "$randomProductName"
+            },
+            {
+              "id": "tD8YIcFU",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "$randomUUID"
+            },
+            {
+              "id": "zqx9jXpC",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationAccessToken"
+            }
+          ],
+          "scriptsModifyEnvVars": true,
+          "ignoreTestResults": true,
+          "trackGlobalEnvironment": false,
+          "requestVariables__expanded": true
+        },
+        "ui": {
+          "data": {},
+          "namedInputsExpanded": true,
+          "color": "purple"
+        }
+      },
+      "cUL1ZVOU": {
+        "type": "task/http-request@2",
+        "pos": {
+          "x": 1056,
+          "y": 112
+        },
+        "config": {
+          "element": {
+            "name": "03-detalhes-do-produto",
+            "method": "GET",
+            "path": "postman/collections/projeto-postman-flows/03-detalhes-do-produto.request.yaml"
+          },
+          "environment": "postman/environments/projeto-postman-advanced-env.environment.yaml",
+          "parseBody": "auto",
+          "requestVariables": [
+            {
+              "id": "7-5PX2Dw",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationBaseUrl"
+            },
+            {
+              "id": "n7sCRkC2",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationProductId"
+            },
+            {
+              "id": "3HMGSVsA",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationAccessToken"
+            }
+          ],
+          "scriptsModifyEnvVars": true,
+          "ignoreTestResults": true,
+          "trackGlobalEnvironment": true,
+          "requestVariables__expanded": true
+        },
+        "ui": {
+          "data": {},
+          "namedInputsExpanded": true
+        }
+      }
+    },
+    "modules": {},
+    "connections": {
+      "1sZKwdAP": {
+        "source": "nxEZoD4f",
+        "target": "xQKohfJC",
+        "sourcePort": "data",
+        "targetPort": "AI"
+      },
+      "zdPFODMF": {
+        "source": "xQKohfJC",
+        "target": "BST_jT6l",
+        "sourcePort": "success",
+        "targetPort": "AI"
+      },
+      "5rrwTJnE": {
+        "source": "BST_jT6l",
+        "target": "cUL1ZVOU",
+        "sourcePort": "success",
+        "targetPort": "AI"
+      }
+    },
+    "annotations": {},
+    "forms": {},
+    "groups": {},
+    "ports": {},
+    "io": {},
+    "description": "",
+    "webhook": {
+      "payloadContent": "body-only",
+      "responseType": "default"
+    },
+    "meta": {},
+    "scenes": {},
+    "scenarios": {
+      "d6HfnXg2": {
+        "name": "Start Trigger",
+        "type": "scenario@3",
+        "triggerType": "ev/endpoint@3",
+        "createdOn": 1791680561019,
+        "updatedOn": 1791680561019,
+        "data": {
+          "CyS8hc44": {
+            "id": "CyS8hc44",
+            "key": "Input 1",
+            "value": "",
+            "type": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "datasetRuns": {},
+    "config": {
+      "definitions": {},
+      "constants": {}
+    },
+    "attributes": {
+      "name": "fluxo-gerenciamento-produto",
+      "latestVersion": null,
+      "parent": null,
+      "createdBy": 15307284,
+      "createdOn": "2026-10-11T00:50:28.735Z",
+      "updatedOn": "2026-10-11T02:04:39.807Z",
+      "fork": null,
+      "type": "module",
+      "workspace": "1c33b5d3-192b-4557-ad5b-b938b44625ff",
+      "permissions": {
+        "canView": true,
+        "canExecute": true,
+        "canEdit": true,
+        "canDelete": true,
+        "canDeploy": true,
+        "canUpdateRoles": false,
+        "canFork": false,
+        "canEditForkDetails": false,
+        "canAddComment": false,
+        "canResolveComment": false,
+        "canDeleteComment": false
+      },
+      "activeTargets": null
+    }
+  },
+  "lockbox": {},
+  "info": {
+    "_postman_id": "587accc4-0e32-48f1-b64c-76a6aac4a5ea"
+  },
+  "_postman_exported_at": "2026-10-11T17:09:42.841Z",
+  "_postman_exported_using": "Postman/Local Mode"
+}

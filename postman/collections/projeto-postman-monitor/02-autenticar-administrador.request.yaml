@@ -1,0 +1,72 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/auth/login"
+method: POST
+headers:
+  accept: "*/*"
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "admin@qatest.com",
+      "password": "Teste@123"
+    }
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Autenticação está disponível\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Login retorna token de acesso\", function () {\r
+
+      \    pm.expect(resposta.data.token)\r
+
+      \        .to.be.a(\"string\")\r
+
+      \        .and.not.empty;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Usuário autenticado é administrador\", function () {\r
+
+      \    pm.expect(resposta.data.user).to.be.an(\"object\");\r
+
+      \    pm.expect(resposta.data.user.role).to.eql(\"admin\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Login apresenta mensagem de sucesso\", function () {\r
+
+      \    pm.expect(resposta.mensagens)\r
+
+      \        .to.include(\"Login realizado com sucesso\");\r
+
+      });\r
+
+      \r
+
+      if (resposta?.data?.token) {\r
+
+      \    pm.environment.set(\r
+
+      \        \"projetoQAAutomationAccessToken\",\r
+
+      \        resposta.data.token\r
+
+      \    );\r
+
+      }"
+    language: text/javascript
+order: 2000

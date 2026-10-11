@@ -1,0 +1,94 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products?page=1&limit=10&order=asc&is_active=true"
+method: GET
+headers:
+  accept: "*/*"
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjlhOThlZTM4LTE0ZGQtNDE4Zi1iNWVmLTQxNGMzOGFiZWEwMyIsImVtYWlsIjoiYWRtaW5AcWF0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc5MTMwMTMxNywiZXhwIjoxNzkxOTA2MTE3fQ.BIER0N_f-RJA-A12mnXRV_23Bq27pp0ObsPFQWzkOrU
+queryParams:
+  page: "1"
+  limit: "10"
+  order: asc
+  is_active: "true"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      const primeiroProduto = resposta.data[0];\r
+
+      \r
+
+      pm.test(\"Catálogo de produtos está disponível\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Consulta retorna produtos cadastrados\", function () {\r
+
+      \    pm.expect(resposta.data)\r
+
+      \        .to.be.an(\"array\")\r
+
+      \        .that.is.not.empty;\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Primeiro produto possui os dados essenciais\", function () {\r
+
+      \    pm.expect(primeiroProduto).to.include.all.keys(\r
+
+      \        \"id\",\r
+
+      \        \"name\",\r
+
+      \        \"price\",\r
+
+      \        \"stock_quantity\",\r
+
+      \        \"sku\",\r
+
+      \        \"category_id\",\r
+
+      \        \"supplier_id\",\r
+
+      \        \"is_active\"\r
+
+      \    );\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Primeiro produto possui valores válidos\", function () {\r
+
+      \    pm.expect(primeiroProduto.id).to.be.a(\"number\");\r
+
+      \    pm.expect(primeiroProduto.name).to.be.a(\"string\").and.not.empty;\r
+
+      \    pm.expect(primeiroProduto.price).to.be.a(\"number\");\r
+
+      \    pm.expect(primeiroProduto.stock_quantity).to.be.a(\"number\");\r
+
+      \    pm.expect(primeiroProduto.is_active).to.be.a(\"boolean\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Paginação corresponde à primeira página\", function () {\r
+
+      \    pm.expect(resposta.pagination.page).to.eql(1);\r
+
+      \    pm.expect(resposta.pagination.total).to.be.above(0);\r
+
+      });"
+    language: text/javascript
+order: 3000

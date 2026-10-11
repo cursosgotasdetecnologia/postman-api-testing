@@ -1,21 +1,27 @@
 name: projeto-postman-advanced-env
 values:
   - key: projetoQAAutomationBaseUrl
-    value: https://northwind-test-platform.vercel.app
+    value: 'https://northwind-test-platform.vercel.app'
   - key: projetoQAAutomationEmail
     value: admin@qatest.com
   - key: projetoQAAutomationPassword
     value: Teste@123
   - key: projetoQAAutomationAccessToken
-    value: ""
+    value: ''
   - key: projetoQAAutomationProductId
     value: 1523
   - key: projetoQAAutomationCategoryId
     value: 4
   - key: projetoQAAutomationSupplierId
-    value: ""
+    value: ''
   - key: projetoQAAutomationAccessTokenUsuario01
-    value: ""
+    value: ''
   - key: projetoQAAutomationAccessTokenUsuario02
-    value: ""
+    value: ''
+  - key: projetoQAAutomationConsumerEmail
+    value: ''
+  - key: projetoQAAutomationConsumerPassword
+    value: ''
+  - key: projetoQAAutomationEstoqueProdutoId
+    value: ''
 color: 0

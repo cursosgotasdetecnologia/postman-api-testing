@@ -1,0 +1,672 @@
+{
+  "version": 1,
+  "name": "Flow from -projeto-postman-flows- collection",
+  "description": "",
+  "flow": {
+    "nodes": {
+      "Q_9PzUR0": {
+        "type": "action/request@1",
+        "pos": {
+          "x": 50,
+          "y": 376
+        },
+        "config": {},
+        "ui": {
+          "data": {
+            "triggerType": "action/request@1"
+          }
+        }
+      },
+      "JnEgt7ku": {
+        "type": "task/http-request@2",
+        "pos": {
+          "x": 352,
+          "y": 268
+        },
+        "config": {
+          "element": {
+            "name": "01-login-no-sistema",
+            "method": "POST",
+            "path": "postman/collections/projeto-postman-flows/01-login-no-sistema.request.yaml"
+          },
+          "environment": "postman/environments/projeto-postman-advanced-env.environment.yaml",
+          "parseBody": "auto",
+          "requestVariables": [
+            {
+              "id": "-ON2YSP9",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationBaseUrl"
+            },
+            {
+              "id": "ASqvlChV",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationEmail"
+            },
+            {
+              "id": "xjvY70Pt",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationPassword"
+            }
+          ],
+          "scriptsModifyEnvVars": true,
+          "ignoreTestResults": true,
+          "trackGlobalEnvironment": true,
+          "requestVariables__expanded": true
+        },
+        "ui": {
+          "data": {},
+          "namedInputsExpanded": true,
+          "color": "green"
+        }
+      },
+      "PiGCMv5J": {
+        "type": "task/http-request@2",
+        "pos": {
+          "x": 719.5,
+          "y": 69
+        },
+        "config": {
+          "element": {
+            "name": "02-cadastro-de-produto",
+            "method": "POST",
+            "path": "postman/collections/projeto-postman-flows/02-cadastro-de-produto.request.yaml"
+          },
+          "environment": "postman/environments/projeto-postman-advanced-env.environment.yaml",
+          "parseBody": "auto",
+          "requestVariables": [
+            {
+              "id": "muezc-Az",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationBaseUrl"
+            },
+            {
+              "id": "MgijJ0bW",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "$randomProductName"
+            },
+            {
+              "id": "cwKbsM9F",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "$randomUUID"
+            },
+            {
+              "id": "VKT2MIJF",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationAccessToken"
+            }
+          ],
+          "scriptsModifyEnvVars": true,
+          "ignoreTestResults": true,
+          "trackGlobalEnvironment": true,
+          "requestVariables__expanded": true
+        },
+        "ui": {
+          "data": {},
+          "namedInputsExpanded": true,
+          "color": "pink"
+        }
+      },
+      "HwzkG5yd": {
+        "type": "task/http-request@2",
+        "pos": {
+          "x": 1087,
+          "y": 89
+        },
+        "config": {
+          "element": {
+            "name": "03-detalhes-do-produto",
+            "method": "GET",
+            "path": "postman/collections/projeto-postman-flows/03-detalhes-do-produto.request.yaml"
+          },
+          "environment": "postman/environments/projeto-postman-advanced-env.environment.yaml",
+          "parseBody": "auto",
+          "requestVariables": [
+            {
+              "id": "itCPq1Pi",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationBaseUrl"
+            },
+            {
+              "id": "PhXxfjP5",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationProductId"
+            },
+            {
+              "id": "C_LpybQ0",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationAccessToken"
+            }
+          ],
+          "scriptsModifyEnvVars": true,
+          "ignoreTestResults": true,
+          "trackGlobalEnvironment": true,
+          "requestVariables__expanded": true
+        },
+        "ui": {
+          "data": {},
+          "namedInputsExpanded": true
+        }
+      },
+      "gS6o8vKb": {
+        "type": "task/http-request@2",
+        "pos": {
+          "x": 1444,
+          "y": 0
+        },
+        "config": {
+          "element": {
+            "name": "04-atualizar-estoque-do-produto",
+            "method": "PATCH",
+            "path": "postman/collections/projeto-postman-flows/04-atualizar-estoque-do-produto.request.yaml"
+          },
+          "environment": "postman/environments/projeto-postman-advanced-env.environment.yaml",
+          "parseBody": "auto",
+          "requestVariables": [
+            {
+              "id": "PN9SgKLH",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationBaseUrl"
+            },
+            {
+              "id": "_2uwOoG0",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationProductId"
+            },
+            {
+              "id": "YoY1GFDn",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationAccessToken"
+            }
+          ],
+          "scriptsModifyEnvVars": true,
+          "ignoreTestResults": true,
+          "trackGlobalEnvironment": false,
+          "requestVariables__expanded": true
+        },
+        "ui": {
+          "data": {},
+          "namedInputsExpanded": true,
+          "color": "purple",
+          "requestVariablesExpanded": true
+        }
+      },
+      "x4vnONrN": {
+        "type": "task/http-request@2",
+        "pos": {
+          "x": 1808,
+          "y": -136
+        },
+        "config": {
+          "element": {
+            "name": "05-detalhes-do-produto",
+            "method": "GET",
+            "path": "postman/collections/projeto-postman-flows/05-detalhes-do-produto.request.yaml"
+          },
+          "environment": "postman/environments/projeto-postman-advanced-env.environment.yaml",
+          "parseBody": "json",
+          "requestVariables": [
+            {
+              "id": "1cjJ_zE2",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationBaseUrl"
+            },
+            {
+              "id": "bauOf9k-",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationProductId"
+            },
+            {
+              "id": "3Pvo7i8d",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationAccessToken"
+            }
+          ],
+          "scriptsModifyEnvVars": true,
+          "ignoreTestResults": true,
+          "trackGlobalEnvironment": true,
+          "requestVariables__expanded": true
+        },
+        "ui": {
+          "data": {},
+          "namedInputsExpanded": true,
+          "color": "grey"
+        }
+      },
+      "xsvg_sYP": {
+        "type": "task/http-request@2",
+        "pos": {
+          "x": 2162,
+          "y": 89
+        },
+        "config": {
+          "element": {
+            "name": "06-avaliar-produto",
+            "method": "POST",
+            "path": "postman/collections/projeto-postman-flows/06-avaliar-produto.request.yaml"
+          },
+          "environment": "postman/environments/projeto-postman-advanced-env.environment.yaml",
+          "parseBody": "auto",
+          "requestVariables": [
+            {
+              "id": "4RhfMsrL",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationBaseUrl"
+            },
+            {
+              "id": "ruw8DS2K",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationProductId"
+            },
+            {
+              "id": "7Xd7ACDp",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationAccessToken"
+            }
+          ],
+          "scriptsModifyEnvVars": true,
+          "ignoreTestResults": true,
+          "trackGlobalEnvironment": true,
+          "requestVariables__expanded": true
+        },
+        "ui": {
+          "data": {},
+          "namedInputsExpanded": true
+        }
+      },
+      "LCGYdI8K": {
+        "type": "task/http-request@2",
+        "pos": {
+          "x": 2519,
+          "y": 89
+        },
+        "config": {
+          "element": {
+            "name": "07-excluir-produto",
+            "method": "DELETE",
+            "path": "postman/collections/projeto-postman-flows/07-excluir-produto.request.yaml"
+          },
+          "environment": "postman/environments/projeto-postman-advanced-env.environment.yaml",
+          "parseBody": "auto",
+          "requestVariables": [
+            {
+              "id": "j-ICPrJs",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationBaseUrl"
+            },
+            {
+              "id": "BIKLqDrO",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationProductId"
+            },
+            {
+              "id": "-nZ6hP5A",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationAccessToken"
+            }
+          ],
+          "scriptsModifyEnvVars": true,
+          "ignoreTestResults": true,
+          "trackGlobalEnvironment": true,
+          "requestVariables__expanded": true
+        },
+        "ui": {
+          "data": {},
+          "namedInputsExpanded": true
+        }
+      },
+      "VyfZPAmN": {
+        "type": "task/http-request@2",
+        "pos": {
+          "x": 2876,
+          "y": 89
+        },
+        "config": {
+          "element": {
+            "name": "08-detalhes-do-produto-excluido",
+            "method": "GET",
+            "path": "postman/collections/projeto-postman-flows/08-detalhes-do-produto-excluido.request.yaml"
+          },
+          "environment": "postman/environments/projeto-postman-advanced-env.environment.yaml",
+          "parseBody": "auto",
+          "requestVariables": [
+            {
+              "id": "JbgsWHq9",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationBaseUrl"
+            },
+            {
+              "id": "Cp1R0qCF",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationProductId"
+            },
+            {
+              "id": "gZxCQsyz",
+              "type": null,
+              "kind": null,
+              "value": null,
+              "key": "projetoQAAutomationAccessToken"
+            }
+          ],
+          "scriptsModifyEnvVars": true,
+          "ignoreTestResults": true,
+          "trackGlobalEnvironment": true,
+          "requestVariables__expanded": true
+        },
+        "ui": {
+          "data": {},
+          "namedInputsExpanded": true
+        }
+      },
+      "rxrJrj4I": {
+        "type": "output/viewer@1",
+        "pos": {
+          "x": 709,
+          "y": 503
+        },
+        "size": {
+          "width": 328,
+          "height": 232
+        },
+        "config": {},
+        "ui": {
+          "data": {
+            "displayType": "auto",
+            "genericLabel": "Display 2"
+          }
+        }
+      }
+    },
+    "modules": {},
+    "connections": {
+      "xOMdJj5J": {
+        "source": "reqHeaders",
+        "sourcePort": "@",
+        "target": "Q_9PzUR0",
+        "targetPort": "headers"
+      },
+      "xIsafxdr": {
+        "source": "reqParams",
+        "sourcePort": "@",
+        "target": "Q_9PzUR0",
+        "targetPort": "params"
+      },
+      "XOkv4Zq9": {
+        "source": "reqBody",
+        "sourcePort": "@",
+        "target": "Q_9PzUR0",
+        "targetPort": "body"
+      },
+      "xDvlkCN3": {
+        "source": "Q_9PzUR0",
+        "target": "JnEgt7ku",
+        "sourcePort": "body",
+        "targetPort": "AI"
+      },
+      "CysAncAp": {
+        "source": "JnEgt7ku",
+        "target": "PiGCMv5J",
+        "sourcePort": "success",
+        "targetPort": "AI"
+      },
+      "XoNf4mPg": {
+        "source": "PiGCMv5J",
+        "target": "HwzkG5yd",
+        "sourcePort": "success",
+        "targetPort": "AI"
+      },
+      "dH8qoac_": {
+        "source": "gS6o8vKb",
+        "target": "x4vnONrN",
+        "sourcePort": "success",
+        "targetPort": "AI"
+      },
+      "pQM81Rdq": {
+        "source": "x4vnONrN",
+        "target": "xsvg_sYP",
+        "sourcePort": "success",
+        "targetPort": "AI"
+      },
+      "IB4PKcp7": {
+        "source": "xsvg_sYP",
+        "target": "LCGYdI8K",
+        "sourcePort": "success",
+        "targetPort": "AI"
+      },
+      "1qrkXWY9": {
+        "source": "LCGYdI8K",
+        "target": "VyfZPAmN",
+        "sourcePort": "success",
+        "targetPort": "AI"
+      },
+      "paM63nOH": {
+        "source": "reqHeaders",
+        "sourcePort": "@",
+        "target": "Q_9PzUR0",
+        "targetPort": "headers"
+      },
+      "x3f8i7e1": {
+        "source": "reqParams",
+        "sourcePort": "@",
+        "target": "Q_9PzUR0",
+        "targetPort": "params"
+      },
+      "t0NPUDNO": {
+        "source": "reqBody",
+        "sourcePort": "@",
+        "target": "Q_9PzUR0",
+        "targetPort": "body"
+      },
+      "Om_X7pBk": {
+        "source": "JnEgt7ku",
+        "target": "rxrJrj4I",
+        "sourcePort": "success",
+        "targetPort": "data"
+      },
+      "niRQzhIU": {
+        "source": "HwzkG5yd",
+        "target": "gS6o8vKb",
+        "sourcePort": "success",
+        "targetPort": "AI"
+      }
+    },
+    "annotations": {},
+    "forms": {},
+    "groups": {},
+    "ports": {},
+    "io": {
+      "reqHeaders": {
+        "type": "input",
+        "name": "headers",
+        "typeDef": {
+          "properties": {}
+        }
+      },
+      "reqParams": {
+        "type": "input",
+        "name": "params",
+        "typeDef": {
+          "properties": {}
+        }
+      },
+      "reqBody": {
+        "type": "input",
+        "name": "body",
+        "typeDef": {}
+      }
+    },
+    "description": "",
+    "webhook": {
+      "payloadContent": "body-only",
+      "responseType": "default"
+    },
+    "meta": {},
+    "scenes": {},
+    "scenarios": {
+      "cbDXNl6_": {
+        "name": "Request Trigger",
+        "type": "scenario@3",
+        "triggerType": "action/request@1",
+        "createdOn": 1791685107871,
+        "updatedOn": 1791685107871,
+        "data": {
+          "reqHeaders": {
+            "id": "reqHeaders",
+            "key": "headers",
+            "value": "{}",
+            "type": {
+              "properties": {}
+            }
+          },
+          "reqParams": {
+            "id": "reqParams",
+            "key": "params",
+            "value": "{}",
+            "type": {
+              "properties": {}
+            }
+          },
+          "reqBody": {
+            "id": "reqBody",
+            "key": "body",
+            "value": "{\n\t\"message\": \"Welcome to Flows!\"\n}",
+            "type": {}
+          }
+        }
+      }
+    },
+    "datasetRuns": {},
+    "config": {
+      "definitions": {},
+      "constants": {}
+    },
+    "attributes": {
+      "name": "Flow from \"projeto-postman-flows\" collection",
+      "latestVersion": {
+        "previous": "6acbb3a11285e50c0402dc69",
+        "type": "module",
+        "ports": {
+          "input": [
+            {
+              "id": "reqHeaders",
+              "name": "headers",
+              "typeDef": {
+                "properties": {}
+              }
+            },
+            {
+              "id": "reqParams",
+              "name": "params",
+              "typeDef": {
+                "properties": {}
+              }
+            },
+            {
+              "id": "reqBody",
+              "name": "body",
+              "typeDef": {}
+            }
+          ],
+          "output": []
+        },
+        "settings": {},
+        "revoked": null,
+        "message": "Sem saida para publicação",
+        "name": "3",
+        "sequence": 3,
+        "hash": {
+          "algo": "sha256",
+          "encoding": "base64",
+          "value": "Vr0upV9vzrxzZp12QmBH0vOjMgDNntd6ZJXfcRKD+wY="
+        },
+        "createdOn": "2026-10-11T16:05:59.841Z",
+        "createdBy": {
+          "user": 15307284,
+          "team": 2255572
+        },
+        "updatedOn": "2026-10-11T16:05:59.841Z",
+        "updatedBy": {
+          "user": 15307284,
+          "team": 2255572
+        },
+        "isReusable": false,
+        "id": "6acbb3e71285e50c0402dc6c"
+      },
+      "parent": null,
+      "createdBy": 15307284,
+      "createdOn": "2026-10-11T02:18:27.561Z",
+      "updatedOn": "2026-10-11T16:05:59.903Z",
+      "fork": null,
+      "type": "module",
+      "workspace": "1c33b5d3-192b-4557-ad5b-b938b44625ff",
+      "permissions": {
+        "canView": true,
+        "canExecute": true,
+        "canEdit": true,
+        "canDelete": true,
+        "canDeploy": true,
+        "canUpdateRoles": false,
+        "canFork": false,
+        "canEditForkDetails": false,
+        "canAddComment": false,
+        "canResolveComment": false,
+        "canDeleteComment": false
+      },
+      "latestReusableVersion": null,
+      "activeTargets": null
+    }
+  },
+  "lockbox": {},
+  "info": {
+    "_postman_id": "d1a4df68-a549-4b35-8f1d-902081acaae8"
+  },
+  "_postman_exported_at": "2026-10-11T17:23:41.977Z",
+  "_postman_exported_using": "Postman/Local Mode"
+}

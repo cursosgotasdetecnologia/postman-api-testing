@@ -1,0 +1,43 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/{{projetoQAAutomationProductId}}"
+method: PATCH
+headers:
+  accept: "*/*"
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {  
+      "stock_quantity": 100
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      const produtoId = Number(\r
+
+      \    pm.environment.get(\"projetoQAAutomationProductId\")\r
+
+      );\r
+
+      \r
+
+      pm.test(\"Estoque do produto atualizado para 100\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      \    pm.expect(resposta.data.id).to.eql(produtoId);\r
+
+      \    pm.expect(resposta.data.stock_quantity).to.eql(100);\r
+
+      });\r
+
+      \r
+
+      pm.environment.set(\"projetoQAAutomationEstoqueProdutoId\", 100);\r\n"
+    language: text/javascript
+order: 4000

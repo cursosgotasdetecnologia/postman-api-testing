@@ -1,0 +1,44 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/products/{{projetoQAAutomationProductId}}"
+method: GET
+headers:
+  accept: "*/*"
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      const produtoId = Number(\r
+
+      \    pm.environment.get(\"projetoQAAutomationProductId\")\r
+
+      );\r
+
+      \r
+
+      pm.test(\"Produto consultado é o produto criado\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      \    pm.expect(resposta.data.id).to.eql(produtoId);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Estoque é um número válido e qdade 100 armazenado\", function () {\r
+
+      \    pm.expect(resposta.data.stock_quantity).to.be.a(\"number\");\r
+
+      \    pm.expect(resposta.data.stock_quantity).to.eql(100);\r
+
+      });\r
+
+      \r
+
+      pm.environment.set(\"projetoQAAutomationEstoqueProdutoId\",resposta.data.stock_quantity);"
+    language: text/javascript
+order: 5000

@@ -1,0 +1,46 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/auth/login"
+method: POST
+headers:
+  accept: "*/*"
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "{{projetoQAAutomationEmail}}",
+      "password": "{{projetoQAAutomationPassword}}"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Login realizado com sucesso\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      \    pm.expect(resposta.data.token).to.be.a(\"string\").and.not.empty;\r
+
+      \    pm.expect(resposta.data.user.role).to.eql(\"admin\");\r
+
+      });\r
+
+      \r
+
+      if (pm.response.code === 200 && resposta.data?.token) {\r
+
+      \    pm.environment.set(\r
+
+      \        \"projetoQAAutomationAccessToken\",\r
+
+      \        resposta.data.token\r
+
+      \    );\r
+
+      }"
+    language: text/javascript
+order: 1000

@@ -1,0 +1,34 @@
+$kind: http-request
+url: "{{projetoQAAutomationBaseUrl}}/api/v1/reviews"
+method: POST
+headers:
+  accept: "*/*"
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "product_id": {{projetoQAAutomationProductId}},
+      "rating": 5,
+      "title": "Produto excelente!",
+      "comment": "Chegou antes do prazo, qualidade top!"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{projetoQAAutomationAccessToken}}"
+scripts:
+  - type: afterResponse
+    code: "const resposta = pm.response.json();\r
+
+      \r
+
+      pm.test(\"Avaliação criada com sucesso\", function () {\r
+
+      \    pm.response.to.have.status(201);\r
+
+      \    pm.expect(resposta.mensagens).to.include(\"Avaliação criada com sucesso!\");\r
+
+      });"
+    language: text/javascript
+order: 6000

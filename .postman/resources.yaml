@@ -1,12 +1,20 @@
 workspace:
   id: 1c33b5d3-192b-4557-ad5b-b938b44625ff
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
 cloudResources:
   collections:
     ../postman/collections/Projeto QA Automation - Etapa 2: 15307284-5db2e029-c214-4e16-a26d-b460ac3937b8
     ../postman/collections/projeto-postman-advanced: 15307284-c20fd52b-1506-45b5-8326-06e1fb813027
     ../postman/collections/projeto-postman-performance: 15307284-901fab22-e088-40b7-8a16-1cd680dbe3ce
+    ../postman/collections/projeto-postman-flows: 15307284-10c5fd60-2fea-4ae7-9716-6d8ddc4fb207
+    ../postman/collections/projeto-postman-monitor: 15307284-e09b629c-5db6-4b67-9ff5-5ca72807992b
   environments:
     ../postman/environments/Projeto QA Automation — Etapa 2.environment.yaml: 15307284-6524991f-3138-4d95-b235-a454e0a47c94
     ../postman/environments/projeto-postman-advanced-env.environment.yaml: 15307284-823d7acf-7417-48ef-a562-5182ff25c8dc
   globals:
     ../postman/globals/workspace.globals.yaml: f53c8f27-bc39-42db-862a-2ef201c7d119
+  flows:
+    ../postman/flows/fluxo-gerenciamento-produto.flow: 6acadd54a3928b1440f65431
+    ../postman/flows/Flow from -projeto-postman-flows- collection.flow: 6acaf1f3a3928b1440f65452
