@@ -1,1 +1,93 @@
 $kind: collection
+description: |-
+  # Projeto Postman Flows — Testes de API REST
+
+  ## Objetivo da Collection
+
+  Esta Collection reúne requisições e testes para validar o ciclo de vida de um produto por meio da API REST: autenticação, cadastro, consulta de detalhes, atualização de estoque, nova consulta, criação de avaliação, exclusão do produto e verificação de sua ausência após a exclusão.
+
+  A Collection foi utilizada como base para a construção de um Postman Flow. O arquivo JSON contém as requisições, configurações e scripts de teste, mas não representa o diagrama visual do Flow.
+
+  ## Sequência das requisições
+
+  A Collection contém oito requisições, organizadas na seguinte ordem:
+
+  1. **01 — Login no sistema (****`POST /api/v1/auth/login`****)**: envia as credenciais configuradas no ambiente e valida a resposta da autenticação.
+      
+  2. **02 — Cadastro de produto (****`POST /api/v1/products`****)**: cria um produto utilizando nome e SKU gerados dinamicamente, além dos dados de preço, estoque, categoria e fornecedor.
+      
+  3. **03 — Detalhes do produto (****`GET /api/v1/products/{id}`****)**: consulta o produto cadastrado e verifica seu identificador e estoque inicial.
+      
+  4. **04 — Atualizar estoque do produto (****`PATCH /api/v1/products/{id}`****)**: altera a quantidade em estoque para 100.
+      
+  5. **05 — Detalhes do produto (****`GET /api/v1/products/{id}`****)**: consulta novamente o produto e valida o estoque atualizado.
+      
+  6. **06 — Avaliar produto (****`POST /api/v1/reviews`****)**: envia uma avaliação associada ao produto, com nota, título e comentário.
+      
+  7. **07 — Excluir produto (****`DELETE /api/v1/products/{id}`****)**: solicita a exclusão do produto cadastrado.
+      
+  8. **08 — Detalhes do produto excluído (****`GET /api/v1/products/{id}`****)**: verifica se o produto excluído deixou de ser encontrado.
+      
+
+  ## Configuração de autenticação
+
+  A primeira requisição realiza o login sem autenticação prévia, utilizando as variáveis de ambiente `projetoQAAutomationEmail` e `projetoQAAutomationPassword`.
+
+  O script de teste do login verifica o status HTTP 200, a presença de um token textual não vazio e o perfil de usuário `admin`. Quando a resposta apresenta status 200 e contém o token, seu valor é armazenado na variável de ambiente `projetoQAAutomationAccessToken`.
+
+  As demais sete requisições utilizam autenticação **Bearer Token**, configurada com essa variável. A URL-base das requisições é definida por `projetoQAAutomationBaseUrl`.
+
+  Antes de executar a Collection, configure as variáveis de ambiente necessárias para o acesso à API.
+
+  ## Variáveis utilizadas
+
+  | Variável | Finalidade e atualização |
+  | --- | --- |
+  | `projetoQAAutomationBaseUrl` | Define a URL-base da API. |
+  | `projetoQAAutomationEmail` | Fornece o email utilizado no login. |
+  | `projetoQAAutomationPassword` | Fornece a senha utilizada no login. |
+  | `projetoQAAutomationAccessToken` | Armazena o token retornado pelo login quando as condições definidas no script são atendidas. |
+  | `projetoQAAutomationProductId` | Armazena o ID retornado no cadastro do produto, utilizado nas consultas, na atualização, na avaliação e na exclusão. |
+  | `projetoQAAutomationEstoqueProdutoId` | Armazena o estoque retornado na consulta do produto e é atualizado para `100` no script de atualização. |
+
+  O cadastro utiliza também as variáveis dinâmicas `{{$randomProductName}}` e `{{$randomUUID}}` para gerar, respectivamente, o nome do produto e parte do SKU.
+
+  A variável `projetoQAAutomationProductId` é preenchida pelo script de teste do cadastro. Os scripts das consultas recuperam esse identificador do ambiente para comparar o produto retornado com o produto criado.
+
+  ## Principais validações dos testes
+
+  Os scripts de teste verificam:
+
+  - **Autenticação:** status HTTP 200, token presente e não vazio e perfil do usuário igual a `admin`.
+      
+  - **Cadastro:** status atribuído à variável `sucesso` com o valor 201, ID numérico e estoque igual a 10.
+      
+  - **Consulta inicial:** status HTTP 200, correspondência do ID consultado com o ID armazenado e estoque numérico igual a 10.
+      
+  - **Atualização do estoque:** status HTTP 200, correspondência do ID e estoque igual a 100.
+      
+  - **Consulta após atualização:** status HTTP 200, correspondência do ID e estoque numérico igual a 100.
+      
+  - **Avaliação:** status HTTP 201 e presença da mensagem de sucesso esperada.
+      
+  - **Exclusão:** status HTTP 200 e presença da mensagem de sucesso esperada.
+      
+  - **Consulta após exclusão:** status HTTP 404, campo `data` igual a `null` e mensagem contendo o texto `não encontrado`.
+      
+
+  **Observação:** no teste de cadastro, a expressão `pm.response.code = 201` utiliza atribuição, e não comparação. Portanto, a validação implementada não equivale a uma comparação independente do status HTTP recebido.
+
+  ## Cuidados com cadastro, atualização e exclusão
+
+  - **Cadastro:** a requisição cria um registro na API. O nome e o SKU são gerados dinamicamente, enquanto os demais dados do corpo são definidos na requisição. O script armazena o ID retornado para uso nas etapas seguintes.
+      
+  - **Atualização:** a requisição `PATCH` altera o estoque do produto identificado pela variável `projetoQAAutomationProductId`. A consulta seguinte verifica se o valor retornado é 100.
+      
+  - **Avaliação:** a requisição utiliza o ID do produto armazenado no ambiente para associar a avaliação ao registro correspondente.
+      
+  - **Exclusão:** a requisição `DELETE` remove o produto identificado pela variável. A etapa seguinte consulta o mesmo ID e verifica a resposta de não encontrado.
+      
+  - **Execução:** como as operações modificam dados, utilize um ambiente de API apropriado para testes. Confira a URL-base e as configurações antes de executar as requisições, especialmente o cadastro e a exclusão.
+      
+
+  A Collection define os testes descritos acima, mas seus scripts, isoladamente, não comprovam resultados de execução nem documentam as conexões, condições ou demais elementos visuais do Postman Flow.
