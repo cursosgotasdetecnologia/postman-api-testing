@@ -20,7 +20,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-  steps:
+    steps:
       - name: Baixar a branch da demonstração [demo-allure]
         uses: actions/checkout@v7
         with:
