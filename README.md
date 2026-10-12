@@ -1,8 +1,60 @@
 # postman-api-testing
 
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![Newman](https://img.shields.io/badge/Newman-CLI-333333?style=for-the-badge)
+![Allure Report](https://img.shields.io/badge/Allure-Report-65C88C?style=for-the-badge)
+
 Repositório da segunda etapa de uma formação em Postman, iniciada na aula 46. Reúne Collections e recursos locais para exercitar testes funcionais de API, cenários de segurança, carga, monitoramento e automação visual com Postman Flows, além de integrações selecionadas com Postman CLI, Newman e GitHub Actions.
 
-O foco é documentar e executar os recursos desta etapa. O projeto não inclui o conteúdo das aulas 1–45 e nem todas as Collections são executadas em CI/CD.
+## 📚 Módulos da Formação — Segunda Etapa
+
+Esta etapa amplia o projeto com recursos avançados do Postman, automação em CI/CD, análise de resultados e organização das entregas em um portfólio profissional da formação Gotas de Tecnologia.
+
+### Módulo 13 — Mock Server
+Preparação de respostas simuladas com Examples, organização de cenários de sucesso e erro e utilização do Mock Server por frontend e outros consumidores da API.
+
+### Módulo 14 — Postman Agent Mode / IA
+Uso do Agent Mode com contexto e prompts, análise dos testes gerados, execução das validações e exploração de Postman AI Skills.
+
+### Módulo 15 — Git, GitHub e VS Code para Projetos de API
+Estruturação do repositório, integração com Native Git e versionamento de Collections e Environments, com revisão e sincronização das alterações.
+
+### Módulo 16 — Postman CLI e Newman
+Preparação da suíte para execução pelo terminal, reutilização de testes entre Collection, folders e requests e comparação prática entre as ferramentas.
+
+### Módulo 17 — CI/CD com GitHub Actions e Postman CLI
+Automação dos testes em pipelines, configuração de variáveis e Secrets e demonstração de falhas e testes ignorados.
+
+### Módulo 18 — Relatórios Automatizados com Newman e Allure
+Preparação do projeto Node.js, execução com Newman, análise do Allure Report e armazenamento e consulta do relatório como artifact no GitHub Actions.
+
+### Módulo 19 — Postman CLI com API Key
+Autenticação no Postman Cloud, execução de Collections por seus IDs e configuração da integração com CI/CD.
+
+### Módulo 20 — Testes de Performance de APIs com Postman
+Execução dos perfis Fixed, Ramp Up, Spike e Peak, interpretação das métricas, critérios de aprovação e automação com Postman CLI e GitHub Actions.
+
+### Módulo 21 — Segurança de APIs para QA
+Verificações práticas baseadas em OWASP: controle de acesso, propriedades, funções, exposição de dados, recursos, fluxos, integrações, SSRF e SQL Injection.
+
+### Módulo 22 — Monitor
+Preparação de uma Collection para monitoramento, agendamento de execuções e análise do histórico, com evidências de falha controlada e recuperação.
+
+### Módulo 23 — Flows
+Preparação de dados e scripts, criação manual de blocos e geração do Flow a partir da Collection. Exploração de Success, Fail, visualização dos resultados, pausa e organização visual, com versionamento no projeto.
+
+### Módulo 24 — Documentação
+Elaboração de descrições de pastas e Collections com Agent Mode e ChatGPT, seguida de revisão com base nas requisições e scripts existentes.
+
+### Módulo 25 — Projeto Final / Portfólio
+Organização do README, publicação do Allure Report com GitHub Pages e apresentação das entregas, com orientações para aplicação profissional
+e continuidade dos estudos.
+
+🔗 [Projeto da primeira etapa — fundamentos e automação com Postman](https://github.com/cursosgotasdetecnologia/api-testes-postman)
+
+🎓 [Conheça as formações da Gotas de Tecnologia](https://gotasdetecnologia.com.br/cursos/)
+
 
 ## Collections
 
