@@ -3,11 +3,24 @@ name: Relatório Allure dos testes de API
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
 jobs:
   allure-report:
     runs-on: ubuntu-latest
 
-    steps:
+environment:
+  name: github-pages
+  url: ${{ steps.deployment.outputs.page_url }}
+
+  steps:
       - name: Baixar a branch da demonstração [demo-allure]
         uses: actions/checkout@v7
         with:
@@ -49,6 +62,18 @@ jobs:
           path: allure-report  
           retention-days: 7        
 
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Preparar o relatório para publicação
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: allure-report
+
+      - name: Publicar o Allure Report
+        id: deployment
+        uses: actions/deploy-pages@v4     
+        
       - name: Manter o resultado real dos testes
         if: steps.newman.outcome == 'failure'
         run: |
