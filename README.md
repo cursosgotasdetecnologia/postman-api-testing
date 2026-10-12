@@ -103,7 +103,25 @@ Os nomes na tabela são os nomes esperados pela configuração do GitHub Actions
 
 `allure-report.yml` faz checkout da branch `demo-allure`, configura Node.js e Java e executa `npm ci` e Newman sobre `newman/allure-demo/`. Nesta cópia da branch principal não há `package.json` nem `newman/allure-demo/`; portanto, os arquivos necessários à demonstração não estão disponíveis aqui. O workflow depende do conteúdo existente na branch `demo-allure` e não deve ser entendido como executável diretamente com os arquivos desta `main`.
 
-O relatório Allure é salvo como **GitHub Actions artifact**. GitHub Pages não foi implementado nesta etapa e não há URL publicada a documentar.
+O relatório Allure é salvo como **GitHub Actions artifact**. 
+
+### [DEMO] Allure Report publicado
+
+[Acessar o relatório Allure](https://cursosgotasdetecnologia.github.io/postman-api-testing/)
+
+Este relatório utiliza a suíte de demonstração da branch `demo-allure`, preparada com falhas controladas para exercitar a identificação e a análise de testes reprovados.
+
+A execução registrada apresentou:
+- 12 testes executados;
+- 9 aprovados;
+- 3 reprovados;
+- 75% de aprovação.
+
+A publicação no GitHub Pages foi concluída com sucesso. 
+O workflow termina com status de falha para preservar o resultado real dos testes da demonstração.
+
+As reprovações devem ser consultadas em **Suites** no relatório.
+
 
 ## Evidências e resultados registrados
 
