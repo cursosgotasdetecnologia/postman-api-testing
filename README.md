@@ -4,6 +4,10 @@
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Newman](https://img.shields.io/badge/Newman-CLI-333333?style=for-the-badge)
 ![Allure Report](https://img.shields.io/badge/Allure-Report-65C88C?style=for-the-badge)
+![Postman Flows](https://img.shields.io/badge/Postman-Flows-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![Performance](https://img.shields.io/badge/Testes-Performance-2563EB?style=for-the-badge)
+![Mock Server](https://img.shields.io/badge/Postman-Mock_Server-8B5CF6?style=for-the-badge&logo=postman&logoColor=white)
+![Monitor](https://img.shields.io/badge/Postman-Monitor-16A34A?style=for-the-badge&logo=postman&logoColor=white)
 
 Repositório da segunda etapa de uma formação em Postman, iniciada na aula 46. Reúne Collections e recursos locais para exercitar testes funcionais de API, cenários de segurança, carga, monitoramento e automação visual com Postman Flows, além de integrações selecionadas com Postman CLI, Newman e GitHub Actions.
 
