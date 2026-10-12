@@ -42,4 +42,4 @@ A autenticação apresentou os maiores tempos de resposta, com média de 241 ms,
 
 ## Evidência visual
 
-![Resultado do teste Spike](resultado-spike.png)
+![Resultado do teste Spike](resultado-spike.PNG)

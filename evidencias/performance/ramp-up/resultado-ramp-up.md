@@ -39,4 +39,4 @@ Mesmo com o crescimento progressivo da carga, o tempo médio de resposta permane
 
 ## Evidência visual
 
-![Resultado do teste Ramp Up](resultado-ramp-up.png)
+![Resultado do teste Ramp Up](resultado-ramp-up.PNG)

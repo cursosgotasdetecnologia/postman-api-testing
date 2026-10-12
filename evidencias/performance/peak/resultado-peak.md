@@ -44,4 +44,4 @@ Foram observadas respostas isoladas acima de um segundo, mas elas não provocara
 
 ## Evidência visual
 
-![Resultado do teste Peak](resultado-peak.png)
+![Resultado do teste Peak](resultado-peak.PNG)

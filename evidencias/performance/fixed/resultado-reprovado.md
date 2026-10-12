@@ -24,4 +24,4 @@ Portanto, a reprovação está relacionada ao critério de desempenho e não à 
 
 ## Evidência visual
 
-![Resultado reprovado do perfil Fixed](resultado-reprovado.png)
+![Resultado reprovado do perfil Fixed](resultado-reprovado.PNG)

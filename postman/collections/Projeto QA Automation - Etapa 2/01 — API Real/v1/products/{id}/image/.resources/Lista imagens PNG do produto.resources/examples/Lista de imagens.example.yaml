@@ -22,7 +22,7 @@ response:
         "data": [
           {
             "id": "f01afbb0-5c2a-4bac-9e8e-18877155de86",
-            "filename": "f01afbb0-5c2a-4bac-9e8e-18877155de86_ChatGPT_Image.png",
+            "filename": "f01afbb0-5c2a-4bac-9e8e-18877155de86_ChatGPT_Image.PNG",
             "url": "/api/v1/products/1/image/f01afbb0-5c2a-4bac-9e8e-18877155de86"
           }
         ],

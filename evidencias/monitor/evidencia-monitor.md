@@ -42,4 +42,4 @@ O histórico demonstrou o ciclo:
 
 ## Evidências visuais
 
-![Histórico do Monitor](evidencia-monitor.png)
+![Histórico do Monitor](evidencia-monitor.PNG)

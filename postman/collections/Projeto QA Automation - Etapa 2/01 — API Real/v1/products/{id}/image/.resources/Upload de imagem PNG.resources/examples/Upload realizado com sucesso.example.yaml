@@ -30,7 +30,7 @@ response:
       {
         "data": {
           "id": "a1b2c3d4-5678-90ef-ghij-klmnopqrstuv",
-          "filename": "a1b2c3d4-5678-90ef-ghij-klmnopqrstuv_foto_produto.png",
+          "filename": "a1b2c3d4-5678-90ef-ghij-klmnopqrstuv_foto_produto.PNG",
           "size": 485760,
           "mimetype": "image/png",
           "productId": 1,

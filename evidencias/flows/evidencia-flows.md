@@ -52,4 +52,4 @@ Após restaurar a senha correta e o estoque para 100, o fluxo foi executado nova
 
 ## Evidência visual
 
-![Execução do Postman Flow](evidencia-flows.png)
+![Execução do Postman Flow](evidencia-flows.PNG)

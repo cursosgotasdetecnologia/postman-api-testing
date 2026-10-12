@@ -25,11 +25,11 @@
 
 ## Resultado por request
 
-| Request | Execuções | Req/s | Média | P95 | P99 | Máximo |
-|---|---:|---:|---:|---:|---:|---:|
-| POST permitir-login-credenciais-válidas | 1.046 | 16,64 | 254 ms | 397 ms | 854 ms | 1.340 ms |
-| GET exibir-primeira-pagina-produtos | 1.045 | 16,62 | 98 ms | 193 ms | 278 ms | 798 ms |
-| GET exibir-categorias-cadastradas | 1.042 | 16,57 | 127 ms | 240 ms | 316 ms | 601 ms |
+| Request                                 | Execuções | Req/s |  Média |    P95 |    P99 |   Máximo |
+| --------------------------------------- | --------: | ----: | -----: | -----: | -----: | -------: |
+| POST permitir-login-credenciais-válidas |     1.046 | 16,64 | 254 ms | 397 ms | 854 ms | 1.340 ms |
+| GET exibir-primeira-pagina-produtos     |     1.045 | 16,62 |  98 ms | 193 ms | 278 ms |   798 ms |
+| GET exibir-categorias-cadastradas       |     1.042 | 16,57 | 127 ms | 240 ms | 316 ms |   601 ms |
 
 ## Análise
 
@@ -53,4 +53,4 @@ Os valores das credenciais não foram incluídos nesta evidência nem versionado
 
 ## Evidência visual
 
-![Resultado do teste de performance pelo Postman CLI](resultado-performance-cli.png)
+![Resultado do teste de performance pelo Postman CLI](resultado-performance-cli.PNG)
