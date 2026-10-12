@@ -37,4 +37,4 @@ A autenticação apresentou os maiores tempos de resposta entre as requisições
 
 ## Evidência visual
 
-![Resultado do teste Fixed](resultado-fixed.png)
+![Resultado do teste Fixed](resultado-fixed.PNG)
